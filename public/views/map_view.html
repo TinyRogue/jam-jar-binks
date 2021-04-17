@@ -2,8 +2,77 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map view</title>
     <link rel="stylesheet" href="/styles/style.css">
 </head>
+
+<style>
+    .button {
+        position: relative;
+        background-color: #0D1117;
+        border-radius: 15vw;
+        border: none;
+        font-size: 12px;
+        color: #F5F5F5;
+        padding: 10px;
+        width: 70%;
+        margin: auto;
+        text-align: center;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .button:after {
+        content: "";
+        background: #323538;
+        display: block;
+        position: absolute;
+        padding-top: 300%;
+        padding-left: 350%;
+        margin-left: -20px!important;
+        margin-top: -120%;
+        opacity: 0;
+        transition: all 0.8s
+    }
+
+    .button:active:after {
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        transition: 0s
+    }
+
+    .addingPanel {
+        color: #0D111750;
+        position: fixed;
+        right: 20px;
+        top: 15vh;
+        z-index: 5;
+        width: 25vw;
+        height: 70vh;
+        background-color: #f5f5f598;
+        border-radius: 2vh;
+        padding: 4vh 2vh;
+    }
+
+    .addingPanel .title {
+        font-size: 30px;
+        border-bottom: 2px solid #0D1117;
+        margin: 5vh 0;
+    }
+
+    .addingPanel .description {
+        font-size: 20px;
+        border-bottom: 2px solid #0D1117;
+    }
+
+</style>
 
 <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -42,9 +111,21 @@
                 zoom: 13
             });
             marker = new google.maps.Marker({
-                map: map
+                map: map,
             });
             google.maps.event.addListenerOnce(map, 'idle', codeAddress);
+            
+            marker.addListener("click", () => {
+                const contentString =
+                    '<div>' + 
+                        '<p>"Stuff about the localization"</p>' +
+                        '<button class="button" onclick="openAddingOption()">"Add idea here"</button>' +
+                    "</div>";
+                const infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                });
+                infowindow.open(map, marker);
+            })
         }
 
         function codeAddress() {
@@ -64,6 +145,25 @@
                 map.setCenter(loadedLocations[address]);
                 marker.setPosition(loadedLocations[address]);
             }
+        }
+
+        function openAddingOption() {
+            var addingPanel = document.createElement("div");
+            addingPanel.className = "addingPanel";
+
+            var title = document.createElement("div");
+            title.className = "title";
+            title.innerHTML = "Add title here...";
+
+            var description = document.createElement("div");
+            description.className = "description";
+            description.innerHTML = "Add description here...";
+
+            addingPanel.appendChild(title);
+            addingPanel.appendChild(description);
+
+            document.body.appendChild(addingPanel);
+            console.log(marker);
         }
         // AIzaSyDa4nN-bDVonpOyK5S7HAx23krp3ZBRLhE
 
