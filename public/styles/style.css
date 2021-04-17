@@ -35,28 +35,65 @@ nav {
 }
 
 .dropdown {
-  color:#fbfaf5;
+  color:whitesmoke;
   padding-right: 20px;
   position: absolute;
   right: 0;
   display: inline-block;
 }
 
+.user_image{
+  display :block;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.tools{
+  padding: 15px 5px;
+  width: 50px;
+  height: 50px;
+}
+
 .dropdown-content {
+  width: 50;
+  height: 50;
   color:inherit;
   display: none;
-  /* position: absolute; */
-  background-color: inherit;
-  /* min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1; */
+  background-color: #161B22;
+}
+
+.dropbtn{
+  padding: 5px 15px;
+  color: whitesmoke;
+  background-color: #161B22;
+  display: block;
+  border: 0px;
+  outline: none;
+}
+
+.dropbtn_log{
+  padding: 5px 15px;
+  color: whitesmoke;
+  display: block;
+  height: 25%;
+  width: 100%;
+  border: 0px;
+  background-color: #161B22;
+}
+
+.dropbtn_log img{
+  height: 25px;
+  width: 25px;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
   color:inherit;
-  background-color: inherit;
+  background-color: #161B22;
+  box-shadow: #000;
+  padding: 25px;
 }
 
 .gallery-filter-item {
@@ -64,7 +101,7 @@ nav {
   padding: 15px 30px;
   border-radius: 100px;
   margin: 4px 5px;
-  color: #FBFAF5;
+  color: whitesmoke;
 }
 
 .gallery-item img {
