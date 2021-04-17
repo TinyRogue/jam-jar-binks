@@ -45,6 +45,10 @@ function connectToDb() {
     res.sendFile(__dirname + '/public/views/home.html')
   });
 
+  app.get('/mapview', (req, res) => {
+    res.sendFile(__dirname + '/public/views/map_view.html')
+  });
+
   app.post('/register', require('./routes/register').getHandler(db));
   app.post('/login', require('./routes/login').getHandler(db));
   app.post('/logout', require('./routes/logout').handler);

@@ -3,31 +3,41 @@
 
 <head>
   <title>Open city</title>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito"/>
   <link rel="stylesheet" href="/styles/style.css">
 </head>
 
 <body>
-<div class="wf-container">
-  <div class="wf-box"> <img src="1.jpg">
-    <div class="content">
-      <h3>Title 1</h3>
-      <p>Content Here</p>
+  <nav>
+    <div class="navbar_top_half">
+      <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Username</a>
+      <a href="#" style="color: white;"> / </a>
+      <a href="#">Searchbox  <i class="fa fa-fw fa-search"></i></a>
     </div>
-  </div>
-  <div class="wf-box"> <img src="2.jpg">
-    <div class="content">
-      <h3>Title 2</h3>
-      <p>Content Here</p>
+    <div class="navbar_bottom_half">
+      <a class="active" href="#"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
     </div>
+
+
+  </nav>
+
+  <div class="main-container">
+    <section class="gallery-filters">
+      <div id="gallery-filters-wrapper"></div>
+    </section>
+
+    <section>
+      <div class="gallery-grid" id="main-gallery"></div>
+    </section>
   </div>
-  <div class="wf-box"> <img src="3.jpg">
-    <div class="content">
-      <h3>Title 3</h3>
-      <p>Content Here</p>
-    </div>
-  </div>
-</div>
 
 </body>
 
+<script src="scripts/macy.js"></script>
+<script src="scripts/main_view.js"></script>
 </html>
