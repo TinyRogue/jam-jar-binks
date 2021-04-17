@@ -44,108 +44,11 @@ function connectToDb() {
     res.sendFile(__dirname + '/public/views/home.html')
   });
 
-  app.post('/register', async (req, res) => {
-    if (req.session.logged) {
-      return res.json({
-        success: false,
-        msg: 'already logged in'
-      });
-    }
-    const requiredFields = ['email', 'password', 'name', 'surname'];
-    for (const field of requiredFields) {
-      if (!req.body[field]) {
-        return res.json({
-          success: false,
-          msg: 'incomplete query'
-        });
-      }
-    }
-    if (!emailValidator.validate(req.body.email)) {
-      return res.json({
-        success: false,
-        msg: 'invalid email address'
-      });
-    }
-    if (req.body.password.length > 50 || req.body.password.length < 3) {
-      return res.json({
-        success: false,
-        msg: 'password too long or short'
-      });
-    }
-    const emailExists = await db.collection('accounts').findOne({email: req.body.email});
-    if (emailExists) {
-      return res.json({
-        success: false,
-        msg: 'email exists'
-      });
-    }
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const newUser = {
-      email: req.body.email,
-      password: hashedPassword,
-      name: req.body.name,
-      surname: req.body.surname
-    };
-    const {err, result} = await db.collection('accounts').insertOne(newUser);
-    if (err) {
-      console.log(err);
-      return res.json({success: false, msg: 'database error'});
-    }
-    res.json({success: true});
-  });
+  const test = require('./routes/register')
 
-  app.post('/login', async (req, res) => {
-    if (req.session.logged) {
-      return res.json({
-        success: true,
-        msg: 'already logged in'
-      });
-    }
-    const requiredFields = ['email', 'password'];
-    for (const field of requiredFields) {
-      if (!req.body[field]) {
-        return res.json({
-          success: false,
-          msg: 'incomplete query'
-        });
-      }
-    }
-    if (!emailValidator.validate(req.body.email)) {
-      return res.json({
-        success: false,
-        msg: 'invalid email address'
-      });
-    }
-    const user = await db.collection('accounts').findOne({email: req.body.email});
-    if (!user) {
-      return res.json({
-        success: false,
-        msg: 'incorrect email or password'
-      });
-    }
-    const passwordMatch = await bcrypt.compare(req.body.password, user.password);
-    if (!passwordMatch) {
-      return res.json({
-        success: false,
-        msg: 'incorrect email or password'
-      });
-    }
-    req.session.logged = true;
-    req.session.userID = user._id;
-    res.json({success: true});
-  });
-
-  app.post('/logout', (req, res) => {
-    if (!req.session.logged) {
-      return res.json({
-        success: true,
-        msg: 'already logged out'
-      });
-    }
-    req.session.destroy(err => {
-      return res.json({success: !!err});
-    });
-  });
+  app.post('/register', require('./routes/register').handler);
+  app.post('/login', require('./routes/login').handler);
+  app.post('/logout', require('./routes/logout').handler);
 
   const PORT = process.env.PORT || 3000;
   
