@@ -2,19 +2,43 @@
 <html lang="en-EN">
 
 <head>
-  <title>Open city</title>
-  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito"/>
-  <link rel="stylesheet" href="/styles/style.css">
-  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <title>Open city</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 
 <body>
+
+  <script>
+    function logout() {
+    fetch('/logout', {method: 'POST'}).then(() => {
+      window.location.reload()    
+    })
+
+} </script>
+
+
   <nav>
     <div class="navbar_top_half">
-      <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Username</a>
-      <a href="#" style="color: white;"> / </a>
-      <a href="#">Searchbox  <i class="fa fa-fw fa-search"></i></a>
+      <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i> Username</a>
+        <a href="#" style="color: white;"> / </a>
+        <a href="#" style="font-family: Consolas;">Searchbox  <i class="fa fa-fw fa-search"></i></a>
+    <div class="dropdown">
+      <img class = "tools" src="/img/icons/settings2.png">
+      <div class="dropdown-content" >
+        <img class = "user_image" src = "/images/person.jpg" alt = "">
+        <div style="font-size:smaller"> Name Surname</div>
+        <button onclick="" class="dropbtn">Edit email </button>
+        <button onclick="" class="dropbtn">Change city </button>
+        <!-- <input onclick="logout()"  type="image" src="/img/icons/logout.png" class="dropbtn_log" > -->
+        <!-- <button onclick="logout()" class="dropbtn_log">Log Out </button> -->
+        <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
+      </div>
     </div>
+    </div>
+
+
     <div class="navbar_bottom_half">
       <a class="active" href="#"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
       <a href="#"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
@@ -51,4 +75,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="scripts/macy.js"></script>
 <script src="scripts/main_view.js"></script>
+
 </html>
