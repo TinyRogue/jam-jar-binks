@@ -4,10 +4,8 @@ const express = require('express');
 const app = express();
 const http = require('http').Server(app);
 const session = require('express-session')
-const bcrypt = require('bcrypt');
 const hash = require('password-hash');
 const {v4: uuidv4} = require('uuid');
-const emailValidator = require("email-validator");
 const MongoClient = require('mongodb').MongoClient;
 
 function connectToDb() {
@@ -37,15 +35,18 @@ function connectToDb() {
     secret: 'session secret',
     resave: false,
     saveUninitialized: true,
-    cookie: {secure: true}
+    cookie: {secure: false}
   }));
 
   app.get('/', (req, res) => {
+    if (!req.session.logged) {
+      return res.sendFile(__dirname + '/public/views/login.html');
+    }
     res.sendFile(__dirname + '/public/views/home.html')
   });
 
-  app.post('/register', require('./routes/register').handler);
-  app.post('/login', require('./routes/login').handler);
+  app.post('/register', require('./routes/register').getHandler(db));
+  app.post('/login', require('./routes/login').getHandler(db));
   app.post('/logout', require('./routes/logout').handler);
 
   const PORT = process.env.PORT || 3000;
