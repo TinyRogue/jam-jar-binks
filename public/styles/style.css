@@ -114,4 +114,33 @@
 .bar_icon {
     width: 15px;
     height: 15px;
+
+html {
+  font: 500 calc(1em + 0.2vmin) Nunito, "SansSerif", monospace;
+  background: #FBFAF5;
+}
+
+#gallery-filters-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 10px 10px 10px;
+  justify-content: flex-start;
+}
+
+.gallery-filter-item {
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 100px;
+  margin: 0 5px;
+  color: #FBFAF5;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 30px;
+  max-height: 90vh;
+}
+
+.gallery-item h3 {
+  margin: 5px 0 0 20px;
 }
