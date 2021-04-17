@@ -1,0 +1,24 @@
+.wf-container { margin: 0 auto; }
+
+.wf-container:before,
+.wf-container:after {
+  content: '';
+  display: table;
+}
+
+.wf-container:after { clear: both; }
+
+.wf-box { margin: 10px; }
+
+.wf-box img {
+  display: block;
+  width: 100%;
+}
+
+.wf-box .content {
+  border: 1px solid #ccc;
+  border-top-width: 0;
+  padding: 5px 8px;
+}
+
+.wf-column { float: left; }
