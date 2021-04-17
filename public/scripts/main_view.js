@@ -62,19 +62,22 @@ function insertGalleryFilters() {
   container.append(fragment)
 }
 
-new Macy({
-  container: '.gallery-grid',
-  mobileFirst: true,
-  breakAt: {
-    0: 1,
-    600: 2,
-    1080: 5
-  },
-  margin: {
-    x: 12,
-    y: 12
-  }
-});
-
 insertGalleryFilters();
 insertImages(20);
+
+
+(function() {
+  new Macy({
+    container: '.gallery-grid',
+    mobileFirst: true,
+    breakAt: {
+      0: 1,
+      600: 2,
+      1080: 5
+    },
+    margin: {
+      x: 12,
+      y: 12
+    }
+  });
+})();
