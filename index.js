@@ -25,6 +25,7 @@ function connectToDb() {
   const {err, db} = await connectToDb();
   if (err) throw err;
 
+  app.use(express.static(__dirname + '/public'));
   app.use(rateLimit({
     windowMs: 60 * 1000 * 1,
     max: 60
@@ -40,7 +41,7 @@ function connectToDb() {
   }));
 
   app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/home.html')
+    res.sendFile(__dirname + '/public/views/home.html')
   });
 
   app.post('/register', async (req, res) => {
