@@ -85,7 +85,7 @@ nav {
     width: 100%;
     background-color: #161B22;
     font-family: Consolas;
-    height: 40px;
+    height: 45px;
     overflow: auto;
 }
 
@@ -121,7 +121,8 @@ nav {
     width: 100%;
     background-color: #161B22;
     font-family: Consolas;
-    height: 40px;
+    padding: 0px;
+    height: 45px;
     overflow: auto;
 }
 
@@ -148,4 +149,25 @@ nav {
 .bar_icon {
     width: 15px;
     height: 15px;
+}
+
+.pr_area {
+    width: 80vw;
+    height: auto;
+    margin: auto;
+    /* background-color: lightblue; */
+    /* display: block; */
+    /* align-self: center; */
+}
+
+.pr_info_bar {
+    width: 100%;
+    height: 30px;
+    background-color: #161B22;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.pr_info_bar_icon {
+    width: 20px;
+    height: auto;
 }
