@@ -1,5 +1,4 @@
 require('dotenv').config()
-
 const querystring = require('querystring');
 const rateLimit = require("express-rate-limit");
 const express = require('express');
@@ -34,7 +33,7 @@ function connectToDb() {
   app.use(express.json());
 
   app.get('/', (req, res) => {
-    res.send('Hello world');
+    res.sendFile(__dirname + '/views/home.html')
   });
 
   const PORT = process.env.PORT | 3000;
