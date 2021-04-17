@@ -6,24 +6,24 @@ const http = require('http').Server(app);
 const session = require('express-session')
 const bcrypt = require('bcrypt');
 const hash = require('password-hash');
-const {v4: uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const emailValidator = require("email-validator");
 const MongoClient = require('mongodb').MongoClient;
 
 function connectToDb() {
-  return new Promise(resolve => {
-    const uri = `mongodb+srv://cityAdmin:${process.env.MONGO_PASSWORD}@city.zzigb.mongodb.net/city?retryWrites=true&w=majority`;
-    const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
-    client.connect(err => {
-      if (err) return resolve({err: err, db: null});
-      resolve({err: null, db: client.db("city")});
+    return new Promise(resolve => {
+        const uri = `mongodb+srv://cityAdmin:${process.env.MONGO_PASSWORD}@city.zzigb.mongodb.net/city?retryWrites=true&w=majority`;
+        const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        client.connect(err => {
+            if (err) return resolve({ err: err, db: null });
+            resolve({ err: null, db: client.db("city") });
+        });
     });
-  });
 }
 
-(async () => {
-  const {err, db} = await connectToDb();
-  if (err) throw err;
+(async() => {
+    const { err, db } = await connectToDb();
+    if (err) throw err;
 
   app.use(express.static(__dirname + '/public'));
   app.use(rateLimit({
