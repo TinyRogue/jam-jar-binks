@@ -44,8 +44,6 @@ function connectToDb() {
     res.sendFile(__dirname + '/public/views/home.html')
   });
 
-  const test = require('./routes/register')
-
   app.post('/register', require('./routes/register').handler);
   app.post('/login', require('./routes/login').handler);
   app.post('/logout', require('./routes/logout').handler);
