@@ -46,24 +46,33 @@
       <a href="#"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
       <a href="#"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
       <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
-
-
     </div>
-
   </nav>
 
   <div class="main-container">
-    <section class="gallery-filters">
-      <div id="gallery-filters-wrapper"></div>
+    <section class="filter-bar">
+      <div class="district-filter">
+        <div id="district-header" class="district-header">
+          <h2>District</h2>
+          <img id="district-arrow" src="/img/icons/right-arrow.svg" alt="">
+        </div>
+        <div id="district-filters-wrapper"></div>
+      </div>
+
+      <div class="filter-categories">
+        <div id="category-header" class="district-header">
+          <h2>Categories</h2>
+        </div>
+        <div id="category-filters-wrapper"></div>
+      </div>
     </section>
 
-    <section>
+    <section class="gallery">
       <div class="gallery-grid" id="main-gallery"></div>
     </section>
   </div>
-
 </body>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="scripts/macy.js"></script>
 <script src="scripts/main_view.js"></script>
 
