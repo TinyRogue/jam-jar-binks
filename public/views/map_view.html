@@ -23,6 +23,53 @@
         <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
     </div>
 
+    <div class="google-map" style="width: 100vw; height: calc(100vh - 90px);">
+
+    </div>
+
+    <script>
+        let geocoder = null;
+        let googleMap = document.querySelector('.google-map');
+        let map = null;
+        let marker = null;
+        let loadedLocations = {};
+        let address = 'Łódź';
+
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
+            map = new google.maps.Map(googleMap, {
+                zoom: 13
+            });
+            marker = new google.maps.Marker({
+                map: map
+            });
+            google.maps.event.addListenerOnce(map, 'idle', codeAddress);
+        }
+
+        function codeAddress() {
+            if (!loadedLocations[address]) {
+                geocoder.geocode({
+                    address: address
+                }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);
+                        loadedLocations[address] = results[0].geometry.location;
+                        marker.setPosition(loadedLocations[address]);
+                    } else {
+                        console.log("Nie udało się załadować miejsca na mapie, " + status);
+                    }
+                });
+            } else {
+                map.setCenter(loadedLocations[address]);
+                marker.setPosition(loadedLocations[address]);
+            }
+        }
+        // AIzaSyDa4nN-bDVonpOyK5S7HAx23krp3ZBRLhE
+
+        // AIzaSyCJwbd6w9_JOQ3SR-rKC0N5oEb2DY4GIJY
+    </script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDa4nN-bDVonpOyK5S7HAx23krp3ZBRLhE&callback=initMap' async defer></script>
+
 </body>
 
 </html>
