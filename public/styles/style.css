@@ -13,19 +13,28 @@ body {
   grid-template-columns: 0.1fr auto;
 }
 
+nav {
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+
 #gallery-filters-wrapper {
   display: flex;
   flex-direction: column;
   margin: 20px 10px 10px 10px;
   justify-content: flex-start;
   align-items: flex-start;
+  position: sticky;
+  top: 135px;
 }
 
 .gallery-filter-item {
   font-weight: bold;
   padding: 15px 30px;
   border-radius: 100px;
-  margin: 0 5px;
+  margin: 4px 5px;
   color: #FBFAF5;
 }
 
