@@ -12,6 +12,9 @@ const colorPicker = {
   }
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // TODO: get images from fb
 function fetchImages(num_images) {
@@ -44,19 +47,58 @@ function insertImages(numImages) {
   container.append(fragment);
 }
 
-function fetchCityDistricts(){
+function fetchCityDistricts() {
   return ["Śródmieście", "Stare Bałuty", "Górna", "Widzew", "Polesie", "Pabianice", "Rydzynki"];
 }
 
+function fetchCategories() {
+  return ['food', 'QA', 'restaurant', 'restructurings', 'culture', 'wellness'];
+}
+
+
 function insertGalleryFilters() {
-  const container = document.getElementById('gallery-filters-wrapper');
+  const container = document.getElementById('district-filters-wrapper');
   const fragment = document.createDocumentFragment();
 
   for (const district of fetchCityDistricts()) {
     const spanFilter = document.createElement('span');
     spanFilter.innerText = district;
     spanFilter.classList.add('gallery-filter-item');
-    spanFilter.style.backgroundColor = colorPicker.next();
+    fragment.append(spanFilter);
+  }
+  container.append(fragment)
+
+  const districtHeader = document.getElementById('district-header');
+  districtHeader.onclick = async () => {
+    const arrow = document.getElementById('district-arrow');
+    const filtersList = document.getElementById('district-filters-wrapper');
+    $(arrow).toggleClass('unwrapped-arrow');
+    $(filtersList).toggleClass('unwrapped-list');
+
+    if ($(filtersList).hasClass('unwrapped-list')) {
+      for await (let span of $(filtersList).find('span')) {
+        $(span).animate({
+          opacity: 1,
+        }, 500);
+        await sleep(80);
+      }
+    } else {
+        $(filtersList).find('span').css({
+          opacity: 0
+        });
+    }
+  }
+}
+
+function insertCategories() {
+  const container = document.getElementById('category-filters-wrapper');
+  const fragment = document.createDocumentFragment();
+
+  for (const category of fetchCategories()) {
+    const spanFilter = document.createElement('span');
+    spanFilter.innerText = category;
+    spanFilter.classList.add('category-filter-item');
+    spanFilter.style.background = colorPicker.next();
     fragment.append(spanFilter);
   }
   container.append(fragment)
@@ -77,4 +119,5 @@ new Macy({
 });
 
 insertGalleryFilters();
+insertCategories();
 insertImages(20);
