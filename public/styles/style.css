@@ -1,6 +1,6 @@
 html {
   font: 500 calc(1em + 0.2vmin) Nunito, "SansSerif", monospace;
-  background: #FBFAF5;
+  background: #fbfaf5;
 }
 
 body {
@@ -28,6 +28,35 @@ nav {
   align-items: flex-start;
   position: sticky;
   top: 135px;
+}
+
+.test{
+  color:inherit;
+}
+
+.dropdown {
+  color:#fbfaf5;
+  padding-right: 20px;
+  position: absolute;
+  right: 0;
+  display: inline-block;
+}
+
+.dropdown-content {
+  color:inherit;
+  display: none;
+  /* position: absolute; */
+  background-color: inherit;
+  /* min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1; */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  color:inherit;
+  background-color: inherit;
 }
 
 .gallery-filter-item {
