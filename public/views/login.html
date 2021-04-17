@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in</title>
+</head>
+<style>
+  body {
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .container .background {
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    filter: blur(3px);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(/images/logging_bg.gif);
+  }
+
+  .right-container {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 400px;
+    background-color: white;
+    box-shadow: -4px 0px 3px 16px white;
+    padding: 50px;
+  }
+
+  .right-container h1 {
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  .right-container input {
+    display: block;
+    border: 2px solid rgb(44, 44, 44);
+    width: 100%;
+    border-radius: 20px;
+    outline: none;
+    padding: 8px 20px;
+  }
+
+  .right-container .input-wrap {
+    position: relative;
+    margin: 10px 0px;
+    margin-top: 25px;
+  }
+
+  .right-container label {
+    display: block;
+    color: rgb(172, 172, 172);
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    transition: 0.3s;
+    font-size: 14px;
+  }
+
+  .right-container .input-wrap.focused label {
+    top: -20px;
+    left: 0px;
+    color: rgb(94, 94, 94);
+    font-size: 16px;
+  }
+
+  .right-container button {
+    background-color: #2C98FF;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 20px;
+    padding: 10px 50px;
+    color: white;
+    font-size: 14px;
+    display: block;
+    margin: 30px auto 0px auto;
+    border-style: inset;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    transition: 0.1s;
+  }
+
+  .right-container button:not(:active):hover {
+    border-right: 4px solid #1a80df;
+    border-bottom: 4px solid #1a80df;
+    transform: translate(-4px, -4px);
+  }
+
+  .right-container .sep-wrap {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin-top: 20px;
+  }
+
+  .sep-wrap .sep {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    height: 1px;
+    width: 100%;
+    background-color: lightgray;
+  }
+
+  .sep-wrap .or {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: rgb(110, 110, 110);
+    font-size: 14px;
+    width: 40px;
+    text-align: center;
+  }
+</style>
+<body>
+  <div class="container">
+    <div class="background"></div>
+    <div class="right-container">
+      <h1>Sign in</h1>
+      <div class="input-wrap">
+        <label for="email-form">Email address</label>
+        <input type="email" id="email-form">
+      </div>
+      <div class="input-wrap">
+        <label for="email-form">Password</label>
+        <input type="password" id="password-form">
+      </div>
+      <button type="button" id="signin">Sign in</button>
+      <div class="sep-wrap">
+        <div class="sep"></div>
+        <div class="or">or</div>
+      </div>
+      <button type="button" id="create-show">Create an account</button>
+
+      <div class="input-wrapper" style="margin-top: 10px; height: 0px; overflow: hidden;">
+        <div class="input-wrap">
+          <label for="email-form-reg">Email address</label>
+          <input type="email" id="email-form-reg">
+        </div>
+        <div class="input-wrap">
+          <label for="password-form-reg">Password</label>
+          <input type="password" id="password-form-reg">
+        </div>
+        <div class="input-wrap">
+          <label for="password2-form-reg">Confirm password</label>
+          <input type="password" id="password2-form-reg">
+        </div>
+        <div class="input-wrap">
+          <label for="name-form-reg">Name</label>
+          <input type="text" id="name-form-reg">
+        </div>
+        <div class="input-wrap">
+          <label for="surname-form-reg">Surname</label>
+          <input type="text" id="surname-form-reg">
+        </div>
+
+        <button type="button" id="create-acc">Create</button>
+      </div>
+    </div>
+  </div>
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script>
+    const $wraps = $('.input-wrap')
+    const $inputs = $('.input-wrap input')
+    const $labels = $('.input-wrap label');
+
+    $inputs.each((i, e) => {
+      const $e = $(e);
+      $e.on('focus', () => {
+        $($wraps[i]).addClass('focused');
+      }).on('focusout', () => {
+        if (e.value) return;
+        $($wraps[i]).removeClass('focused');
+      });
+      $($labels[i]).on('click', () => {
+        setTimeout(() => {
+          $e.focus();
+        }, 0)
+      });
+    });
+
+    $('#signin').on('click', () => {
+      if (!$('#email-form').get(0).checkValidity()) {
+        return alert('Incorrect email address!');
+      }
+      if (!$('#password-form').val()) {
+        return alert('Password cannot be empty!');
+      }
+      const email = $('#email-form').val().trim();
+      const password = $('#password-form').val().trim();
+      $.post('/login', {email, password}, function(res) {
+        console.log(res);
+        if (!res.success) {
+          return alert(res.msg);
+        }
+        window.location.reload();
+      });
+    });
+
+    $('#create-acc').on('click', () => {
+      if (!$('#email-form-reg').get(0).checkValidity()) {
+        return alert('Incorrect email address!');
+      }
+      if (!$('#password-form-reg').val()) {
+        return alert('Password cannot be empty!');
+      }
+      if ($('#password-form-reg').val() !== $('#password2-form-reg').val()) {
+        return alert('Passwords have to match!');
+      }
+      if (!$('#name-form-reg').val()) {
+        return alert('Name cannot be empty!');
+      }
+      if (!$('#surname-form-reg').val()) {
+        return alert('Surname cannot be empty!');
+      }
+      const email = $('#email-form-reg').val().trim();
+      const password = $('#password-form-reg').val().trim();
+      const name = $('#name-form-reg').val().trim();
+      const surname = $('#surname-form-reg').val().trim();
+      const data = {email, password, name, surname};
+      $.post('/register', data, function(res) {
+        console.log(res);
+        if (!res.success) {
+          return alert(res.msg);
+        }
+        alert('Success! You can now sign in');
+      })
+    });
+
+    $('#create-show').on('click', () => {
+      $('.input-wrapper').animate({height: $('.input-wrapper').get(0).scrollHeight}, 400)
+    })
+  </script>
+</body>
+</html>
