@@ -108,6 +108,16 @@ insertGalleryFilters();
 insertCategories();
 insertImages(20);
 
+$('.gallery-filter-item').on('click', function() {
+  $(this).toggleClass('selected');
+  if ($(this).hasClass('selected')) {
+    $('.gallery-filter-item').not(this).animate({height: '0px', padding: '0px', border: '0px'}, 100);
+  } else {
+    $('.gallery-filter-item').not(this).animate({height: '24px', padding: '15px 30px', border: '1px solid black'}, 100);
+    $('.gallery-filter-item').not(this).css({border: '1px solid black'});
+  }
+});
+
 
 (function() {
   new Macy({
