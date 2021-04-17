@@ -105,6 +105,8 @@ nav {
   cursor: pointer;
   box-shadow: 2px 2px 4px #0D1117;
 
+}
+
 #gallery-filters-wrapper {
     display: flex;
     flex-direction: column;
