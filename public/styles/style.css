@@ -1,3 +1,120 @@
+.wf-container {
+    margin: 0 auto;
+}
+
+.wf-container:before,
+.wf-container:after {
+    content: '';
+    display: table;
+}
+
+.wf-container:after {
+    clear: both;
+}
+
+.wf-box {
+    margin: 10px;
+}
+
+.wf-box img {
+    display: block;
+    width: 100%;
+}
+
+.wf-box .content {
+    border: 1px solid #ccc;
+    border-top-width: 0;
+    padding: 5px 8px;
+}
+
+.wf-column {
+    float: left;
+}
+
+.navbar_top_half {
+    width: 100%;
+    background-color: #161B22;
+    overflow: auto;
+}
+
+
+/* Navbar links */
+
+.navbar_top_half a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: #2C98FF;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+/* Navbar links on mouse-over */
+
+.navbar_top_half a:hover {
+    background-color: #161B22;
+}
+
+
+/* Current/active navbar link */
+
+.active {
+    background-color: #161B22;
+}
+
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+
+@media screen and (max-width: 500px) {
+    .navbar_top_half a {
+        float: none;
+        display: block;
+    }
+}
+
+
+/* Style the navigation bar */
+
+.navbar_bottom_half {
+    width: 100%;
+    background-color: #161B22;
+    overflow: auto;
+}
+
+
+/* Navbar links */
+
+.navbar_bottom_half a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+/* Navbar links on mouse-over */
+
+.navbar_bottom_half a:hover {
+    background-color: #000;
+}
+
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+
+@media screen and (max-width: 500px) {
+    .navbar_bottom_half a {
+        float: none;
+        display: block;
+    }
+}
+
+.bar_icon {
+    width: 15px;
+    height: 15px;
+
 html {
   font: 500 calc(1em + 0.2vmin) Nunito, "SansSerif", monospace;
   background: #FBFAF5;
