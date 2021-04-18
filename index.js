@@ -36,7 +36,7 @@ function connectToDb() {
     app.use(express.json());
 
     app.use(fileUpload({
-        limits: {fileSize: 50 * 1024 * 1024}
+        limits: { fileSize: 50 * 1024 * 1024 }
     }));
 
     app.engine('mustache', mustacheExpress());
@@ -65,18 +65,18 @@ function connectToDb() {
         res.sendFile(__dirname + '/public/views/pull_request_view.html')
     });
 
-    app.get('/idea/:id', async (req, res) => {
+    app.get('/idea/:id', async(req, res) => {
         if (!req.session.logged) {
             return res.redirect('/');
         }
         if (!req.params.id) {
             return res.redirect('/');
         }
-        const idea = await db.collection('ideas').findOne({_id: new ObjectId(req.params.id)});
+        const idea = await db.collection('ideas').findOne({ _id: new ObjectId(req.params.id) });
         if (!idea) {
             return res.redirect('/');
         }
-        const user = await db.collection('accounts').findOne({_id: new ObjectId(idea.addedBy)})
+        const user = await db.collection('accounts').findOne({ _id: new ObjectId(idea.addedBy) })
         if (!user) {
             return res.redirect('/');
         }
@@ -107,7 +107,7 @@ function connectToDb() {
     });
 
     app.get('/imgview', (req, res) => {
-        res.sendFile(__dirname + '/public/views/images_view.html')
+        res.sendFile(__dirname + '/public/views/memes_view.html')
     });
 
     app.post('/register', require('./routes/register').getHandler(db));
