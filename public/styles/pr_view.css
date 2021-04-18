@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  font: 500 calc(1em + 1vmin) "Nunito", Helvetica, sans-serif;
+  font: 500 calc(1em + 1vmin) "Poppins", Helvetica, sans-serif;
 }
 
 .pr_left_info_bar, .pr_right_info_bar {
