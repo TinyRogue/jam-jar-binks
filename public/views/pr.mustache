@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+
+<head>
+    <title>Open city</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
+    <link rel="stylesheet" href="/styles/style.css">
+
+    <style>
+
+        .pr-content {
+            margin: 60px auto;
+            max-width: 1200px;
+            width: 100%;
+            background-color: #FBFAF5;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .top-right {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 20px;
+            max-width: 80%;
+        }
+
+        .pr-content .content {
+            border: 2px solid gray;
+            border-radius: 15px;
+            padding: 30px 15px;
+            margin-top: 20px;
+        }
+
+        .main-comment {
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="navbar_top_half">
+            <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i>{{user_name}}{{user_surname}}</a>
+            <a href="#" style="color: white;"> / </a>
+            <a href="#" style="font-family: Consolas;">Searchbox  <i class="fa fa-fw fa-search"></i></a>
+            <div class="dropdown">
+                <img class="tools" src="/img/icons/settings2.png">
+                <div class="dropdown-content">
+                    <img class="user_image" src="/images/person.jpg" alt="">
+                    <div class="user-name">{{user_name}} {{user_surname}}</div>
+                    <button onclick="" class="dropbtn">Edit email </button>
+                    <button onclick="" class="dropbtn">Change city </button>
+                    <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
+                </div>
+            </div>
+        </div>
+        <div class="navbar_bottom_half">
+            <a class="active" href="/"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
+            <a href="/mapview"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
+            <a href="/prview"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
+            <a href="/imgview"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Memes</a>
+            <a href="https://en.wikipedia.org/wiki/Initiative"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
+            <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
+        </div>
+    </nav>
+
+    <div class="pr-content">
+        <div class="main-comment">
+            <div class="top">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar" style="vertical-align: top;">
+                <div class="top-right">
+                    <div class="nick">{{author_name}} {{author_surname}}</div>
+                    <div class="commits">25 commits</div>
+                    <div class="content">
+                        <h1>{{pr_title}}</h1>
+                        {{pr_desc}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-comment">
+            <div class="top">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar" style="vertical-align: top;">
+                <div class="top-right">
+                    <div class="nick">Nick</div>
+                    <div class="content">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus quis inventore provident laborum adipisci consequatur quos. Temporibus excepturi nam, nisi necessitatibus perspiciatis dolorum ducimus laboriosam rem, tenetur, cumque iusto. Deleniti.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-comment">
+            <div class="top">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar" style="vertical-align: top;">
+                <div class="top-right">
+                    <div class="nick">Nick</div>
+                    <div class="content">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus quis inventore provident laborum adipisci consequatur quos. Temporibus excepturi nam, nisi necessitatibus perspiciatis dolorum ducimus laboriosam rem, tenetur, cumque iusto. Deleniti.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+
+</script>
+
+<script>
+    function logout() {
+        fetch('/logout', {
+            method: 'POST'
+        }).then(() => {
+            window.location.href = '/';
+        })
+    }
+</script>
+
+</html>

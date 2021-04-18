@@ -84,6 +84,35 @@ function connectToDb() {
         });
     });
 
+    app.get('/pr/:id', async(req, res) => {
+        if (!req.session.logged) {
+            return res.redirect('/');
+        }
+        const pr = await db.collection('prs').findOne({_id: new ObjectId(req.params.id)});
+        if (!pr) {
+            return res.redirect('/');
+        }
+        const author = await db.collection('accounts').findOne({_id: new ObjectId(pr.userID)});
+        if (!author) {
+            return res.redirect('/');
+        }
+        const self = await db.collection('accounts').findOne({ _id: new ObjectId(req.session.userID) });
+        let name = 'John';
+        let surname = 'Doe';
+        if (self) {
+            name = self.name;
+            surname = self.surname;
+        }
+        res.render('pr', {
+            user_name: htmlspecialchars(name),
+            user_surname: htmlspecialchars(surname),
+            pr_title: htmlspecialchars(pr.title),
+            pr_desc: htmlspecialchars(pr.desc),
+            author_name: htmlspecialchars(author.name),
+            author_surname: htmlspecialchars(author.surname)
+        });
+    });
+
     app.get('/prview', async(req, res) => {
         if (!req.session.logged) {
             return res.redirect('/');
