@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map view</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+
+
+<body>
+    <script>
+        function logout() {
+            fetch('/logout', {
+                method: 'POST'
+            }).then(() => {
+                window.location.location = '/'
+            })
+
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <nav style="margin:0px;">
+        <div class="navbar_top_half">
+            <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i> Username </a>
+            <a href="#" style="color: white;"> / </a>
+            <a href="#" style="font-family: Consolas;"> Searchbox  <i class="fa fa-fw fa-search"></i></a>
+            <div class="dropdown">
+                <img class="tools" src="/img/icons/settings2.png">
+                <div class="dropdown-content">
+                    <img class="user_image" src="/images/person.jpg" alt="">
+                    <div style="font-size:smaller"> Name Surname</div>
+                    <button onclick="" class="dropbtn">Edit email </button>
+                    <button onclick="" class="dropbtn">Change city </button>
+                    <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
+                </div>
+            </div>
+        </div>
+        <div class="navbar_bottom_half">
+            <a class="active" href="/"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
+            <a href="/mapview"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
+            <a href="/prview"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
+            <a href="/imgview"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
+            <a href="https://en.wikipedia.org/wiki/Initiative"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
+            <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
+        </div>
+    </nav>
+    <div class="images_area">
+        <div class="image_container">
+            <img class="image_container_image" src="/images/empty_heart.png" alt="">
+            <span class="image_container_text">Some random stuff about the empty and broken heart that's in the container with it :(Some random stuff about the empty and broken heart that's in the container with it :(Some random stuff about the empty and broken heart that's in the container with it :(Some random stuff about the empty and broken heart that's in the container with it :(</span>
+        </div>
+        <div class="image_container">
+            <img class="image_container_image" src="/images/logging_bg.gif" alt="">
+            <span class="image_container_text">Some random stuff about the empty and broken heart that's in the container with it :(</span>
+        </div>
+        <div class="image_container">
+            <img class="image_container_image" src="/images/person.jpg" alt="">
+            <span class="image_container_text">Some random stuff about the empty and broken heart that's in the container with it :(</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

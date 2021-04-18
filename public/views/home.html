@@ -10,65 +10,93 @@
 
 <body>
 
-  <nav>
-    <div class="navbar_top_half">
-      <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i> Username</a>
-        <a href="#" style="color: white;"> / </a>
-        <a href="#" style="font-family: Consolas;">Searchbox  <i class="fa fa-fw fa-search"></i></a>
-    <div class="dropdown">
-      <img class = "tools" src="/img/icons/settings2.png">
-      <div class="dropdown-content" >
-        <img class = "user_image" src = "/images/person.jpg" alt = "">
-        <div class="user-name"> Name Surname</div>
-        <button onclick="" class="dropbtn">Edit email </button>
-        <button onclick="" class="dropbtn">Change city </button>
-        <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
-      </div>
-    </div>
-    </div>
+    <nav>
+        <div class="navbar_top_half">
+            <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i> Username</a>
+            <a href="#" style="color: white;"> / </a>
+            <a href="#" style="font-family: Consolas;">Searchbox  <i class="fa fa-fw fa-search"></i></a>
+            <div class="dropdown">
+                <img class="tools" src="/img/icons/settings2.png">
+                <div class="dropdown-content">
+                    <img class="user_image" src="/images/person.jpg" alt="">
+                    <div class="user-name"> Name Surname</div>
+                    <button onclick="" class="dropbtn">Edit email </button>
+                    <button onclick="" class="dropbtn">Change city </button>
+                    <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
+                </div>
+            </div>
+        </div>
         <div class="navbar_bottom_half">
             <a class="active" href="/"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
             <a href="/mapview"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
             <a href="/prview"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
-            <a href="#"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
-            <a href="#"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
+            <a href="/imgview"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
+            <a href="https://en.wikipedia.org/wiki/Initiative"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
             <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
         </div>
-  </nav>
+    </nav>
 
-  <div class="main-container">
-    <section class="filter-bar">
-      <div class="district-filter">
-        <div id="district-header" class="district-header">
-          <h2>District</h2>
-          <img id="district-arrow" src="/img/icons/right-arrow.svg" alt="">
+    <div class="main-container">
+        <section class="filter-bar">
+            <div class="district-filter">
+                <div id="district-header" class="district-header">
+                    <h2>District</h2>
+                    <img id="district-arrow" src="/img/icons/right-arrow.svg" alt="">
+                </div>
+                <div id="district-filters-wrapper"></div>
+            </div>
+
+            <div class="filter-categories">
+                <div id="category-header" class="district-header">
+                    <h2>Categories</h2>
+                </div>
+                <div id="category-filters-wrapper"></div>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <div class="gallery-grid" id="main-gallery"></div>
+        </section>
+
+        <div class="add-idea">
+          &#10010;
         </div>
-        <div id="district-filters-wrapper"></div>
-      </div>
 
-      <div class="filter-categories">
-        <div id="category-header" class="district-header">
-          <h2>Categories</h2>
+        <div class="add-idea-overlay">
+          <input type="file" accept="image/*" class="idea-image" style="display: none;">
+          <div class="box">
+            <div class="image-upload">
+              <div class="info">
+                <div>Click to upload an image</div>
+                <img src="/images/upload.png" class="icon">
+              </div>
+            </div>
+            <div class="right-wrapperAAA">
+              <div class="x">&#10005;</div>
+              <input type="text" class="idea-title" placeholder="Title...">
+              <input type="text" class="idea-desc" placeholder="Description...">
+              <input type="text" class="idea-city" placeholder="City">
+              <input type="text" class="idea-address" placeholder="Where's it taking place?">
+              <button type="button" class="save-idea">Add idea</button>
+            </div>
+          </div>
         </div>
-        <div id="category-filters-wrapper"></div>
-      </div>
-    </section>
 
-    <section class="gallery">
-      <div class="gallery-grid" id="main-gallery"></div>
-    </section>
-  </div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="scripts/macy.js"></script>
 <script src="scripts/main_view.js"></script>
 
-  <script>
+<script>
     function logout() {
-    fetch('/logout', {method: 'POST'}).then(() => {
-      window.location.reload()    
-    })
+        fetch('/logout', {
+            method: 'POST'
+        }).then(() => {
+          window.location.location = '/'
+        })
 
-} </script>
+    }
+</script>
 
 </html>
