@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+
+<head>
+  <title>Open city</title>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito"/>
+  <link rel="stylesheet" href="/styles/style.css">
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .idea-wrap {
+      margin: 30px auto;
+      max-width: 1200px;
+      width: 100%;
+      background-color: #FBFAF5;
+      height: 600px;
+      box-shadow: 0px 0px 5px 4px #e4e4e4;
+      border-radius: 25px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 5fr 6fr 4fr;
+
+    }
+    
+    .image-wrap {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .image-wrap .notice {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .image-wrap:hover img {
+      filter: brightness(60%);
+    }
+
+    .image-wrap:hover .notice {
+      opacity: 1;
+    }
+
+    .idea-wrap .middle-wrap {
+      padding: 10px 30px;
+      position: relative;
+    }
+
+    .idea-wrap .middle-wrap .gravity {
+      position: absolute;
+      bottom: 0px;
+      left: 30px;
+      width: calc(100% - 60px);
+      background-color: #FBFAF5;
+    }
+
+    .idea-wrap .title {
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .idea-wrap .desc {
+      font-size: 16px;
+      margin: 10px 0px;
+    }
+
+    .idea-wrap .avatar {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .idea-wrap .small-avatar {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .idea-wrap .creator .name {
+      font-size: 14px;
+      font-weight: 900;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .idea-wrap .comments-wrap {
+      margin-top: 30px;
+      padding-bottom: 20px;
+      background-color: #FBFAF5;
+    }
+
+    .idea-wrap .comments {
+      height: 120px;
+      overflow: hidden;
+    }
+    
+    .idea-wrap .label {
+      display: inline-block;
+      border-radius: 15px;
+      padding: 5px 10px;
+      background-color: #F05B5B;
+      color: white;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .idea-wrap .label:nth-child(even) {
+      background-color: #5BA9F0;
+    }
+
+    .idea-wrap .comment-input-wrap {
+      height: 50px;
+      width: 100%;
+      display: none;
+      padding: 5px 0px;
+    }
+
+    .idea-wrap .comment-input-wrap input {
+      height: calc(100% - 5px);
+      width: 100%;
+      border: 2px solid black;
+      padding: 5px 20px;
+      border-radius: 20px;
+      outline: none;
+    }
+    
+    .idea-wrap .comment .content {
+      display: inline-block;
+      border: 2px solid gray;
+      border-radius: 15px;
+      font-size: 14px;
+      padding: 6px 15px;
+      margin-left: 10px;
+    }
+
+    .idea-wrap .comment {
+      margin-top: 10px;
+    }
+
+    .idea-wrap .comments-wrap .header {
+      display: inline-block;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .idea-wrap .comments-wrap .see-all {
+      cursor: pointer;
+      background-color: #2C98FF;
+      color: white;
+      margin-left: 10px;
+      border-radius: 10px;
+      border: 0px;
+      padding: 5px 20px;
+    }
+
+    .idea-wrap .right-wrap {
+      background-color: #0D1117;
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: 25% 25% 25% 25%;
+    }
+
+    .idea-wrap .right-wrap > div {
+      padding: 15px 25px;
+    }
+
+    .idea-wrap .ass-list {
+      margin-top: 10px;
+      height: calc(100% - 40px);
+      overflow: auto;
+    }
+
+    .idea-wrap .ass {
+      color: white;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .idea-wrap .ass a {
+      color: white;
+    }
+
+    .idea-wrap .ass-name {
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .idea-wrap .right-wrap .header {
+      color: white;
+    }
+
+    .idea-wrap .top-wrap {
+      height: 50px;
+      position: relative;
+    }
+    
+    .idea-wrap .rating-wrap {
+      width: 100px;
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .idea-wrap .bar-wrap {
+      width: 100%;
+      display: flex;
+      height: 5px;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+
+    .idea-wrap .bar-wrap .green {
+      background-color: green;
+      height: 100%;
+    }
+
+    .idea-wrap .bar-wrap .red {
+      background-color: red;
+      height: 100%;
+    }
+
+    .idea-wrap .hand-wrap {
+      position: relative;
+      height: 30px;
+      padding-top: 10px;
+    }
+
+    .idea-wrap .upvote,
+    .idea-wrap .downvote {
+      cursor: pointer;
+      display: block;
+      position: absolute;
+      height: calc(100% - 10px);
+      right: 0px;
+    }
+
+    .idea-wrap .upvote {
+      right: initial;
+      left: 0px;
+    }
+  
+    .love-wrap {
+      position: absolute;
+      height: 30px;
+      top: 50%;
+      right: 0px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .love-wrap img {
+      height: 100%;
+    }
+
+    .idea-wrap .notifs-wrapper {
+      margin-top: 25px;
+    }
+
+    .idea-wrap .notifs-wrapper button {
+      display: block;
+      margin: auto;
+      cursor: pointer;
+      border: 0px;
+      outline: none;
+      color: white;
+      padding: 3px 20px;
+      width: 120px;
+      margin-top: 5px;
+      border-radius: 10px;
+    }
+
+    .idea-wrap .notifs-wrapper .sub {
+      background-color: #F05B5B;
+    }
+
+    .idea-wrap .notifs-wrapper .unsub {
+      background-color: gray;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    function logout() {
+    fetch('/logout', {method: 'POST'}).then(() => {
+      window.location.reload()    
+    })
+
+} </script>
+
+  <nav>
+      <div class="navbar_top_half">
+        <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i> Username</a>
+          <a href="#" style="color: white;"> / </a>
+          <a href="#" style="font-family: Consolas;">Searchbox  <i class="fa fa-fw fa-search"></i></a>
+          <div class="dropdown">
+            <img class = "tools" src="/img/icons/settings2.png">
+            <div class="dropdown-content" >
+              <img class = "user_image" src = "/images/person.jpg" alt = "">
+              <div style="font-size:smaller"> Name Surname</div>
+              <button onclick="" class="dropbtn">Edit email </button>
+              <button onclick="" class="dropbtn">Change city </button>
+              <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
+            </div>
+          </div>
+      </div>
+
+    <div class="navbar_bottom_half">
+      <a class="active" href="#"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
+      <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
+    </div>
+
+    <div class="idea-wrap">
+      <div class="image-wrap">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80">
+        <div class="notice">Click to enlarge</div>
+      </div>
+      <div class="middle-wrap">
+        <div class="top-wrap">
+          <div class="rating-wrap">
+            <div class="bar-wrap">
+              <div class="green" style="width: 70%;"></div>
+              <div class="red" style="width: 30%;"></div>
+            </div>
+            <div class="hand-wrap">
+              <img class="upvote" src="/images/upvote.png">
+              <img class="downvote" src="/images/downvote.png">
+            </div>
+          </div>
+          <div class="love-wrap">
+            <img src="/images/empty_heart.png">
+          </div>
+        </div>
+        <div class="title">
+          Kawiarnia na rogu Maja i Kieleckiego
+        </div>
+        <div class="desc">
+          Zarąbista kawiarnia by się przydała, bo na uczelnie zombie chodzą.
+        </div>
+        <div class="gravity">
+          <div class="creator">
+            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+            <div class="name">
+              Dziobak Dziobalski
+            </div>
+          </div>
+          <div class="comments-wrap">
+            <div class="header">8 comments</div>
+            <button type="button" class="see-all">Expand</button>
+            <div class="comments">
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo fajny pomysł!
+                </div>
+              </div>
+              <div class="comment">
+                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                <div class="content">
+                  Bardzo fajny pomysł!
+                </div>
+              </div>
+            </div>
+            <div class="comment-input-wrap">
+              <input type="text" id="comment-input" placeholder="Write your comment...">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-wrap">
+        <div class="assignments-wrap">
+          <div class="header">Assignments</div>
+          <div class="ass-list">
+            <div class="ass">
+              <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+              <div class="ass-name">Somebody once</div>
+            </div>
+            <div class="ass">
+              <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+              <div class="ass-name">Told me</div>
+            </div>
+            <div class="ass">
+              <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+              <div class="ass-name">The world</div>
+            </div>
+            <div class="ass">
+              <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+              <div class="ass-name">Is gonna</div>
+            </div>
+            <div class="ass">
+              <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+              <div class="ass-name">Roll me</div>
+            </div>
+          </div>
+        </div>
+        <div class="labels-wrap">
+          <div class="header">Labels</div>
+          <div class="labels-list">
+            <div class="label">Food</div>
+            <div class="label">Culture</div>
+            <div class="label">Food</div>
+            <div class="label">Culture</div>
+            <div class="label">Food</div>
+            <div class="label">Culture</div>
+            <div class="label">Food</div>
+          </div>
+        </div>
+        <div class="prs-wrap">
+          <div class="header">Linked Pull Reuqests</div>
+          <div class="ass-list">
+            <div class="ass">
+              <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+              <div class="ass-name">
+                <a href="#">Putting dispenser here</a>
+              </div>
+            </div>
+            <div class="ass">
+              <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+              <div class="ass-name">
+                <a href="#">The Engineer is a spy</a>
+              </div>
+            </div>
+            <div class="ass">
+              <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+              <div class="ass-name">
+                <a href="#">Nope</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="notifs-wrap">
+          <div class="header">Notifications</div>
+          <div class="notifs-wrapper">
+            <button class="sub">Subscribe</button>
+            <button class="unsub">Unsubscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script>
+    let hidden = true;
+    let initialHeight = $('.comments-wrap').height() + 20;
+    $('.see-all').on('click', () => {
+      if (hidden) {
+        $('.see-all').text('Hide')
+        $('.comments-wrap').animate({height: '580px'});
+        $('.comments').css({overflow: 'auto', height: 'calc(100% - 50px)'});
+        $('.comment-input-wrap').show(300);
+      } else {
+        $('.see-all').text('Expand')
+        $('.comments-wrap').animate({height: `${initialHeight}px`});
+        $('.comments').css({overflow: 'hidden', height: '120px'}).scrollTop(0)
+        $('.comment-input-wrap').hide(300);
+      }
+      hidden = !hidden;
+    });
+  </script>
+
+</body>
+
+</html>

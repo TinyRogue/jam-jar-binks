@@ -1,6 +1,7 @@
 dbImage = {
   path: "",
   description: "",
+  url: "",
 }
 
 const colorPicker = {
@@ -12,6 +13,9 @@ const colorPicker = {
   }
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // TODO: get images from fb
 function fetchImages(num_images) {
@@ -21,6 +25,7 @@ function fetchImages(num_images) {
   for (const _dbImage of dbImages) {
     _dbImage.description = "Lorem Ipsum ashduagsdu agsudgua agsudg";
     _dbImage.path = path;
+    _dbImage.url = '/idea';
   }
   return dbImages;
 }
@@ -30,7 +35,8 @@ function insertImages(numImages) {
   const fragment = document.createDocumentFragment()
 
   for (const _dbImage of fetchImages(numImages)) {
-    const item = document.createElement('div');
+    const item = document.createElement('a');
+    item.href = _dbImage.url;
     item.classList.add('gallery-item')
     const img = document.createElement('img');
     img.src = _dbImage.path;
@@ -44,37 +50,89 @@ function insertImages(numImages) {
   container.append(fragment);
 }
 
-function fetchCityDistricts(){
+function fetchCityDistricts() {
   return ["Śródmieście", "Stare Bałuty", "Górna", "Widzew", "Polesie", "Pabianice", "Rydzynki"];
 }
 
+function fetchCategories() {
+  return ['food', 'QA', 'restaurant', 'restructurings', 'culture', 'wellness'];
+}
+
+
 function insertGalleryFilters() {
-  const container = document.getElementById('gallery-filters-wrapper');
+  const container = document.getElementById('district-filters-wrapper');
   const fragment = document.createDocumentFragment();
 
   for (const district of fetchCityDistricts()) {
     const spanFilter = document.createElement('span');
     spanFilter.innerText = district;
     spanFilter.classList.add('gallery-filter-item');
-    spanFilter.style.backgroundColor = colorPicker.next();
+    fragment.append(spanFilter);
+  }
+  container.append(fragment)
+
+  const districtHeader = document.getElementById('district-header');
+  districtHeader.onclick = async () => {
+    const arrow = document.getElementById('district-arrow');
+    const filtersList = document.getElementById('district-filters-wrapper');
+    $(arrow).toggleClass('unwrapped-arrow');
+    $(filtersList).toggleClass('unwrapped-list');
+
+    if ($(filtersList).hasClass('unwrapped-list')) {
+      for await (let span of $(filtersList).find('span')) {
+        $(span).animate({
+          opacity: 1,
+        }, 500);
+        await sleep(80);
+      }
+    } else {
+        $(filtersList).find('span').css({
+          opacity: 0
+        });
+    }
+  }
+}
+
+function insertCategories() {
+  const container = document.getElementById('category-filters-wrapper');
+  const fragment = document.createDocumentFragment();
+
+  for (const category of fetchCategories()) {
+    const spanFilter = document.createElement('span');
+    spanFilter.innerText = category;
+    spanFilter.classList.add('category-filter-item');
+    spanFilter.style.background = colorPicker.next();
     fragment.append(spanFilter);
   }
   container.append(fragment)
 }
 
-new Macy({
-  container: '.gallery-grid',
-  mobileFirst: true,
-  breakAt: {
-    0: 1,
-    600: 2,
-    1080: 5
-  },
-  margin: {
-    x: 12,
-    y: 12
+insertGalleryFilters();
+insertCategories();
+insertImages(20);
+
+$('.gallery-filter-item').on('click', function() {
+  $(this).toggleClass('selected');
+  if ($(this).hasClass('selected')) {
+    $('.gallery-filter-item').not(this).animate({height: '0px', padding: '0px', border: '0px'}, 100);
+  } else {
+    $('.gallery-filter-item').not(this).animate({height: '24px', padding: '15px 30px', border: '1px solid black'}, 100);
+    $('.gallery-filter-item').not(this).css({border: '1px solid black'});
   }
 });
 
-insertGalleryFilters();
-insertImages(20);
+(function() {
+  new Macy({
+    container: '.gallery-grid',
+    mobileFirst: true,
+    breakAt: {
+      0: 1,
+      600: 2,
+      1080: 5
+    },
+    margin: {
+      x: 12,
+      y: 12
+    }
+  });
+})();

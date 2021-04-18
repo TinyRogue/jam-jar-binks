@@ -19,47 +19,47 @@ function connectToDb() {
     });
 }
 
-(async() => {
-    const { err, db } = await connectToDb();
-    if (err) throw err;
+(async () => {
+  const {err, db} = await connectToDb();
+  if (err) throw err;
 
-    app.use(express.static(__dirname + '/public'));
-    app.use(rateLimit({
-        windowMs: 60 * 1000 * 1,
-        max: 60
-    }));
-    app.use(express.urlencoded({ extended: false }));
-    app.use(express.json());
+  app.use(express.static(__dirname + '/public'));
+  app.use(rateLimit({
+    windowMs: 60 * 1000 * 1,
+    max: 60
+  }));
+  app.use(express.urlencoded({extended: false}));
+  app.use(express.json());
 
-    app.use(session({
-        secret: 'session secret',
-        resave: false,
-        saveUninitialized: true,
-        cookie: { secure: false }
-    }));
+  app.use(session({
+    secret: 'session secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: false}
+  }));
 
-    app.get('/', (req, res) => {
-        if (!req.session.logged) {
-            return res.sendFile(__dirname + '/public/views/login.html');
-        }
-        res.sendFile(__dirname + '/public/views/home.html')
-    });
+  app.get('/', (req, res) => {
+    if (!req.session.logged) {
+      return res.sendFile(__dirname + '/public/views/login.html');
+    }
+    res.sendFile(__dirname + '/public/views/home.html')
+  });
 
-    app.get('/mapview', (req, res) => {
-        res.sendFile(__dirname + '/public/views/map_view.html')
-    });
+  app.get('/mapview', (req, res) => {
+    res.sendFile(__dirname + '/public/views/map_view.html')
+  });
 
-    app.get('/prview', (req, res) => {
-        res.sendFile(__dirname + '/public/views/pull_request_view.html')
-    });
+  app.get('/idea', (req, res) => {
+    res.sendFile(__dirname + '/public/views/idea.html')
+  });
 
-    app.post('/register', require('./routes/register').getHandler(db));
-    app.post('/login', require('./routes/login').getHandler(db));
-    app.post('/logout', require('./routes/logout').handler);
+  app.post('/register', require('./routes/register').getHandler(db));
+  app.post('/login', require('./routes/login').getHandler(db));
+  app.post('/logout', require('./routes/logout').handler);
 
-    const PORT = process.env.PORT || 3000;
-
-    http.listen(PORT, () => {
-        console.log('http server listening on port ' + PORT);
-    });
+  const PORT = process.env.PORT || 3000;
+  
+  http.listen(PORT, () => {
+    console.log('http server listening on port ' + PORT);
+  });
 })();

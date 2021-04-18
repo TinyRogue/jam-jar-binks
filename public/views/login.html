@@ -203,7 +203,7 @@
       });
     });
 
-    $('#signin').on('click', () => {
+    function signin() {
       if (!$('#email-form').get(0).checkValidity()) {
         return alert('Incorrect email address!');
       }
@@ -219,7 +219,9 @@
         }
         window.location.reload();
       });
-    });
+    }
+
+    $('#signin').on('click', signin);
 
     $('#create-acc').on('click', () => {
       if (!$('#email-form-reg').get(0).checkValidity()) {
@@ -254,6 +256,13 @@
     $('#create-show').on('click', () => {
       $('.input-wrapper').animate({height: $('.input-wrapper').get(0).scrollHeight}, 400)
     })
+
+    $('#email-form, #password-form').on('keyup', function(e) {
+      console.log(e)
+      if (e.key === 'Enter') {
+        signin();
+      }
+    });
   </script>
 </body>
 </html>
