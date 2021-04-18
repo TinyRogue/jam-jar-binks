@@ -319,7 +319,7 @@
                 <img class="tools" src="/img/icons/settings2.png">
                 <div class="dropdown-content">
                     <img class="user_image" src="/images/person.jpg" alt="">
-                    <div style="font-size:smaller"> Name Surname</div>
+                    <div style="font-size:smaller">{{user_name}} {{user_surname}}</div>
                     <button onclick="" class="dropbtn">Edit email </button>
                     <button onclick="" class="dropbtn">Change city </button>
                     <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
@@ -338,7 +338,7 @@
 
     <div class="idea-wrap">
         <div class="image-wrap">
-            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80">
+            <img src="{{idea_image}}">
             <div class="notice">Click to enlarge</div>
         </div>
         <div class="middle-wrap">
@@ -358,91 +358,33 @@
                 </div>
             </div>
             <div class="title">
-                Kawiarnia na rogu Maja i Kieleckiego
+                {{idea_title}}
             </div>
             <div class="desc">
-                Zarąbista kawiarnia by się przydała, bo na uczelnie zombie chodzą.
+                {{idea_desc}}
             </div>
             <div class="gravity">
                 <div class="creator">
                     <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
                     <div class="name">
-                        Dziobak Dziobalski
+                        {{author_name}} {{author_surname}}
                     </div>
                 </div>
                 <div class="comments-wrap">
-                    <div class="header">8 comments</div>
+                    <div class="header">{{comments_count}} comments</div>
                     <button type="button" class="see-all">Expand</button>
                     <div class="comments">
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo fajny pomysł!
+                        {{#comments}}
+                            <div class="comment">
+                                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                                <div class="content">
+                                    {{.}}
+                                </div>
                             </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo fajny pomysł!
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                            <div class="content">
-                                Bardzo fajny pomysł!
-                            </div>
-                        </div>
+                        {{/comments}}
                     </div>
                     <div class="comment-input-wrap">
-                        <input type="text" id="comment-input" placeholder="Write your comment...">
+                        <input type="text" id="comment-input" placeholder="Write your comment..." idea-id='{{idea_id}}'>
                     </div>
                 </div>
             </div>
@@ -547,6 +489,18 @@
             }
             hidden = !hidden;
         });
+
+        $('#comment-input').on('keyup', function(e) {
+            if (e.key !== 'Enter') return;
+            const id = $(this).attr('idea-id');
+            if (!id) return;
+            const comment = this.value.trim();
+            if (!this.value) return;
+            this.value = '';
+            $.post('/addIdeaComment', {comment, id}, function(res) {
+                console.log(res);
+            })
+        })
     </script>
 
 </body>
