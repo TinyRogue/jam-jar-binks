@@ -29,7 +29,8 @@ function getHandler(db) {
     const newPR = {
       title: req.body.title,
       desc: req.body.desc,
-      ideaID: req.body.id
+      ideaID: req.body.id,
+      userID: req.session.userID
     }
     const prID = await db.collection('prs').insertOne(newPR);
     await db.collection('ideas').updateOne({_id: ObjectId(req.body.id)}, {$push: {PRs: prID.insertedId}});

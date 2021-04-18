@@ -7,28 +7,26 @@ const colorPicker = {
     }
 }
 
-function makePR(isOpened, title, author, labels, photoPath) {
-    return {
-        isOpened: isOpened,
-        title: title,
-        author: author,
-        labels: labels,
-        photoPath: photoPath
-    }
+function makePR(isOpened, title, author, labels, photoPath, id, desc) {
+  return {
+    isOpened: isOpened,
+    title: title,
+    author: author,
+    labels: labels,
+    photoPath: photoPath,
+    _id: id,
+    desc
+  }
 }
 
 function fetchPRs() {
-    return [
-        makePR(true, "Namawiamy dostawców", "Hipster Coffee", ['Food', 'Culture'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-        makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-        makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-        makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-        makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'), makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'), makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-        makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-        makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-        makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-        makePR(false, "Ogarniamy działeczkę", "JanuszPOL", ['Food'], 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2FmZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-    ]
+  const result = [];
+  PR_JSON.forEach(pr => {
+    result.push(
+      makePR(true, pr.title, 'Unknown', ['Food'], `/uploads/${pr.idea.imageID}.png`, pr._id, pr.desc)
+    )
+  })
+  return result;
 }
 
 function preparePR_HTML(PR) {
@@ -85,33 +83,33 @@ function removeDescription(listwrapper, prElem) {
     listwrapper.removeChild(prElem.nextSibling);
 }
 
-function addDescription(listwrapper, test) {
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('pr-description-wrapper');
+function addDescription(listwrapper, test, src, desc) {
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('pr-description-wrapper');
 
-    const left = document.createElement('div');
-    left.classList.add('pr-description-left');
-    const right = document.createElement('div');
-    right.classList.add('pr-description-right');
-    const text = document.createElement('p');
-    text.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit" +
-        "Lorem ipsum dolor sit amet, consectetur";
-    const goToPR = document.createElement('a');
-    goToPR.innerText = 'Go to this pull request';
-    const img = document.createElement('img');
-    img.src = '/img/icons/go-arrow.svg';
-    goToPR.append(img);
-    right.append(goToPR);
-    left.append(text);
-    wrapper.append(left);
-    wrapper.append(right);
-    listwrapper.insertBefore(wrapper, test.nextSibling);
+  const left = document.createElement('div');
+  left.classList.add('pr-description-left');
+  const right = document.createElement('div');
+  right.classList.add('pr-description-right');
+  const text = document.createElement('p');
+  text.innerText = desc;
+  const goToPR = document.createElement('a');
+  goToPR.href = src;
+  goToPR.innerText = 'Go to this pull request';
+  const img = document.createElement('img');
+  img.src = '/img/icons/go-arrow.svg';
+  goToPR.append(img);
+  right.append(goToPR);
+  left.append(text);
+  wrapper.append(left);
+  wrapper.append(right);
+  listwrapper.insertBefore(wrapper, test.nextSibling);
 }
 
 function addPRsToList(PRs) {
-    const container = document.getElementById('pr_info_blocks_area');
-    const fragment = document.createDocumentFragment();
-    const open_counter = document.getElementById('open_count');
+  const container = document.getElementById('pr_info_blocks_area');
+  const fragment = document.createDocumentFragment();
+  const open_counter = document.getElementById('open_count');
     const closed_counter = document.getElementById('closed_count');
     var open = 0,
         closed = 0;
@@ -121,17 +119,16 @@ function addPRsToList(PRs) {
     open_counter.innerText = open;
     closed_counter.innerText = closed;
 
-    for (const PR of PRs) {
-        const prElem = preparePR_HTML(PR);
-        prElem.onclick = function() {
-            $(prElem).toggleClass('pr-content');
-            if ($(prElem).hasClass('pr-content')) {
-                addDescription(container, prElem);
-            } else {
-                removeDescription(container, prElem);
-            }
-        }
-        fragment.append(prElem);
+  for (const PR of PRs) {
+    const prElem = preparePR_HTML(PR);
+    prElem.onclick = function() {
+      $(prElem).toggleClass('pr-content');
+      if ($(prElem).hasClass('pr-content')) {
+        addDescription(container, prElem, '/pr/' + PR._id, PR.desc);
+      } else {
+        removeDescription(container, prElem);
+      }
+
     }
     container.append(fragment);
 }
