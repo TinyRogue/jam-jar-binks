@@ -50,19 +50,55 @@ function connectToDb() {
         cookie: { secure: false }
     }));
 
-    app.get('/', (req, res) => {
+    app.get('/', async (req, res) => {
         if (!req.session.logged) {
             return res.render('login')
         }
-        res.render('home');
+        const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
+        let name = 'John';
+        let surname = 'Doe';
+        if (self) {
+            name = self.name;
+            surname = self.surname;
+        }
+        res.render('home', {
+            user_name: name,
+            user_surname: surname
+        });
     });
 
-    app.get('/mapview', (req, res) => {
-        res.render('map_view')
+    app.get('/mapview', async (req, res) => {
+        if (!req.session.logged) {
+            return res.redirect('/');
+        }
+        const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
+        let name = 'John';
+        let surname = 'Doe';
+        if (self) {
+            name = self.name;
+            surname = self.surname;
+        }
+        res.render('map_view', {
+            user_name: name,
+            user_surname: surname
+        });
     });
 
-    app.get('/prview', (req, res) => {
-        res.render('pull_request_view')
+    app.get('/prview', async (req, res) => {
+        if (!req.session.logged) {
+            return res.redirect('/');
+        }
+        const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
+        let name = 'John';
+        let surname = 'Doe';
+        if (self) {
+            name = self.name;
+            surname = self.surname;
+        }
+        res.render('pull_request_view', {
+            user_name: name,
+            user_surname: surname
+        });
     });
 
     app.get('/idea/:id', async(req, res) => {
@@ -107,6 +143,9 @@ function connectToDb() {
     });
 
     app.get('/imgview', (req, res) => {
+        if (!req.session.logged) {
+            return res.redirect('/');
+        }
         res.render('memes_view');
     });
 
