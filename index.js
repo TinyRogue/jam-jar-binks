@@ -50,11 +50,11 @@ function connectToDb() {
         cookie: { secure: false }
     }));
 
-    app.get('/', async (req, res) => {
+    app.get('/', async(req, res) => {
         if (!req.session.logged) {
             return res.render('login')
         }
-        const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
+        const self = await db.collection('accounts').findOne({ _id: new ObjectId(req.session.userID) });
         let name = 'John';
         let surname = 'Doe';
         if (self) {
@@ -67,11 +67,11 @@ function connectToDb() {
         });
     });
 
-    app.get('/mapview', async (req, res) => {
+    app.get('/mapview', async(req, res) => {
         if (!req.session.logged) {
             return res.redirect('/');
         }
-        const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
+        const self = await db.collection('accounts').findOne({ _id: new ObjectId(req.session.userID) });
         let name = 'John';
         let surname = 'Doe';
         if (self) {
@@ -84,7 +84,7 @@ function connectToDb() {
         });
     });
 
-    app.get('/prview', async (req, res) => {
+    app.get('/prview', async(req, res) => {
         if (!req.session.logged) {
             return res.redirect('/');
         }
@@ -131,9 +131,9 @@ function connectToDb() {
         }
         let PRs = []
         for (const prID of idea.PRs) {
-            PRs.push(await db.collection('prs').findOne({_id: prID}));
+            PRs.push(await db.collection('prs').findOne({ _id: prID }));
         }
-        const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
+        const self = await db.collection('accounts').findOne({ _id: new ObjectId(req.session.userID) });
         let name = 'John';
         let surname = 'Doe';
         if (self) {
@@ -155,11 +155,21 @@ function connectToDb() {
         });
     });
 
-    app.get('/imgview', (req, res) => {
+    app.get('/imgview', async(req, res) => {
         if (!req.session.logged) {
             return res.redirect('/');
         }
-        res.render('memes_view');
+        const self = await db.collection('accounts').findOne({ _id: new ObjectId(req.session.userID) });
+        let name = 'John';
+        let surname = 'Doe';
+        if (self) {
+            name = self.name;
+            surname = self.surname;
+        }
+        res.render('memes_view', {
+            user_name: name,
+            user_surname: surname
+        });
     });
 
     app.post('/register', require('./routes/register').getHandler(db));
