@@ -17,22 +17,12 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// TODO: get images from fb
 function fetchImages(num_images) {
   return new Promise(resolve => {
     $.get('/getIdeas', function(ideas) {
       resolve(ideas);
     })
   });
-  const path = "https://hypebeast.com/wp-content/blogs.dir/6/files/2019/08/best-new-york-city-hotels-celebrity-sightings-kim-kardashian-meghan-markle-bella-hadid-1.jpg";
-  let dbImages = new Array(num_images);
-  dbImages.fill(dbImage)
-  for (const _dbImage of dbImages) {
-    _dbImage.description = "Lorem Ipsum ashduagsdu agsudgua agsudg";
-    _dbImage.path = path;
-    _dbImage.url = '/idea';
-  }
-  return dbImages;
 }
 
 async function insertImages(numImages) {
