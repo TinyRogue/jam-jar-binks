@@ -32,6 +32,15 @@ function fetchPRs() {
 }
 
 function preparePR_HTML(PR) {
+  const createWrapper = (elements, className) => {
+    const wrapper = document.createElement('div');
+    for (const elem of elements) {
+      wrapper.append(elem);
+    }
+    wrapper.classList.add(className);
+    return wrapper;
+  }
+
   const prElem = document.createElement('div');
   prElem.classList.add('list-item');
 
@@ -39,7 +48,7 @@ function preparePR_HTML(PR) {
   let leftElements = [];
 
   const openedIcon = document.createElement('img');
-  openedIcon.src = PR.isOpened ? 'img/icons/pr_open.png' : 'img/icons/pr_closed.png';
+  openedIcon.src = PR.isOpened ? 'img/icons/pr_open_dark.png' : 'img/icons/pr_closed.png';
   leftElements.push(openedIcon);
 
   const title = document.createElement('span');
@@ -63,15 +72,6 @@ function preparePR_HTML(PR) {
   const img = document.createElement('img');
   img.src = PR.photoPath;
   rightElements.push(img);
-
-  const createWrapper = (elements, className) => {
-    const wrapper = document.createElement('div');
-    for (const elem of elements) {
-      wrapper.append(elem);
-    }
-    wrapper.classList.add(className);
-    return wrapper;
-  }
 
   const rightDiv = createWrapper(rightElements, 'right-inner-items');
   const leftDiv = createWrapper(leftElements, 'left-inner-items');
