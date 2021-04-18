@@ -8,6 +8,9 @@ const hash = require('password-hash');
 const { v4: uuidv4 } = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const fileUpload = require('express-fileupload')
+const mustacheExpress = require('mustache-express')
+const htmlspecialchars = require('htmlspecialchars');
+const { ObjectId } = require('bson');
 
 function connectToDb() {
     return new Promise(resolve => {
@@ -36,6 +39,10 @@ function connectToDb() {
         limits: {fileSize: 50 * 1024 * 1024}
     }));
 
+    app.engine('mustache', mustacheExpress());
+    app.set('view engine', 'mustache');
+    app.set('views', __dirname + '/public/views');
+
     app.use(session({
         secret: 'session secret',
         resave: false,
@@ -58,8 +65,40 @@ function connectToDb() {
         res.sendFile(__dirname + '/public/views/pull_request_view.html')
     });
 
-    app.get('/idea/:id', (req, res) => {
-        res.sendFile(__dirname + '/public/views/idea.html')
+    app.get('/idea/:id', async (req, res) => {
+        if (!req.session.logged) {
+            return res.redirect('/');
+        }
+        if (!req.params.id) {
+            return res.redirect('/');
+        }
+        const idea = await db.collection('ideas').findOne({_id: new ObjectId(req.params.id)});
+        if (!idea) {
+            return res.redirect('/');
+        }
+        const user = await db.collection('accounts').findOne({_id: new ObjectId(idea.addedBy)})
+        if (!user) {
+            return res.redirect('/');
+        }
+        const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
+        let name = 'John';
+        let surname = 'Doe';
+        if (self) {
+            name = self.name;
+            surname = self.surname;
+        }
+        res.render('idea', {
+            idea_title: htmlspecialchars(idea.title),
+            idea_desc: htmlspecialchars(idea.desc),
+            author_name: htmlspecialchars(user.name),
+            author_surname: htmlspecialchars(user.surname),
+            user_name: name,
+            user_surname: surname,
+            comments: idea.comments,
+            comments_count: idea.comments.length,
+            idea_image: `/uploads/${idea.imageID}.png`,
+            idea_id: req.params.id
+        });
     });
 
     app.get('/imgview', (req, res) => {
@@ -72,6 +111,7 @@ function connectToDb() {
     app.post('/addIdea', require('./routes/addIdea').getHandler(db));
     app.get('/getIdeas', require('./routes/getIdeas').getHandler(db));
     app.get('/getIdea', require('./routes/getIdea').getHandler(db));
+    app.post('/addIdeaComment', require('./routes/addIdeaComment').getHandler(db));
 
     const PORT = process.env.PORT || 3000;
 
