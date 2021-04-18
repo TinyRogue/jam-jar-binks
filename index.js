@@ -5,18 +5,18 @@ const app = express();
 const http = require('http').Server(app);
 const session = require('express-session')
 const hash = require('password-hash');
-const {v4: uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 
 function connectToDb() {
-  return new Promise(resolve => {
-    const uri = `mongodb+srv://cityAdmin:${process.env.MONGO_PASSWORD}@city.zzigb.mongodb.net/city?retryWrites=true&w=majority`;
-    const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
-    client.connect(err => {
-      if (err) return resolve({err: err, db: null});
-      resolve({err: null, db: client.db("city")});
+    return new Promise(resolve => {
+        const uri = `mongodb+srv://cityAdmin:${process.env.MONGO_PASSWORD}@city.zzigb.mongodb.net/city?retryWrites=true&w=majority`;
+        const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        client.connect(err => {
+            if (err) return resolve({ err: err, db: null });
+            resolve({ err: null, db: client.db("city") });
+        });
     });
-  });
 }
 
 (async () => {

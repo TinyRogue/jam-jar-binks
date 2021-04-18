@@ -10,15 +10,6 @@
 
 <body>
 
-  <script>
-    function logout() {
-    fetch('/logout', {method: 'POST'}).then(() => {
-      window.location.reload()    
-    })
-
-} </script>
-
-
   <nav>
     <div class="navbar_top_half">
       <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i> Username</a>
@@ -35,16 +26,14 @@
       </div>
     </div>
     </div>
-
-
-    <div class="navbar_bottom_half">
-      <a class="active" href="#"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
-      <a href="#"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
-      <a href="#"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
-      <a href="#"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
-      <a href="#"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
-      <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
-    </div>
+        <div class="navbar_bottom_half">
+            <a class="active" href="/"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
+            <a href="/mapview"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
+            <a href="/prview"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
+            <a href="#"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
+            <a href="#"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
+            <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
+        </div>
   </nav>
 
   <div class="main-container">
@@ -73,5 +62,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="scripts/macy.js"></script>
 <script src="scripts/main_view.js"></script>
+
+  <script>
+    function logout() {
+    fetch('/logout', {method: 'POST'}).then(() => {
+      window.location.reload()    
+    })
+
+} </script>
 
 </html>
