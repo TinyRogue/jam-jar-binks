@@ -32,7 +32,12 @@ function getHandler(db) {
       city: req.body.city,
       addedBy: req.session.userID,
       addedOn: new Date(),
-      comments: []
+      comments: [],
+      labels: [],
+      PRs: [],
+      assignments: [],
+      ratings: 0,
+      positiveRatings: 0
     }
     req.files.image.mv(__dirname + '/../public/uploads/' + imageID + '.png', async function() {
       await db.collection('ideas').insertOne(ideaData);
