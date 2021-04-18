@@ -499,6 +499,7 @@
             this.value = '';
             $.post('/addIdeaComment', {comment, id}, function(res) {
                 console.log(res);
+                if (res.success) window.location.reload();
             })
         })
     </script>
