@@ -88,6 +88,17 @@ function connectToDb() {
         if (!req.session.logged) {
             return res.redirect('/');
         }
+        const ideas = await db.collection('ideas').find({}).toArray();
+        const PRs = []
+        for (const idea of ideas) {
+            for (const PR of idea.PRs) {
+                const fetchedPR = await db.collection('prs').findOne({_id: PR});
+                const userPR = await db.collection('accounts').findOne({_id: new ObjectId(fetchedPR.userID)})
+                fetchedPR.idea = idea;
+                fetchedPR.userData = userPR;
+                PRs.push(fetchedPR);
+            }
+        }
         const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
         let name = 'John';
         let surname = 'Doe';
@@ -97,7 +108,9 @@ function connectToDb() {
         }
         res.render('pull_request_view', {
             user_name: name,
-            user_surname: surname
+            user_surname: surname,
+            PRs: PRs,
+            PR_JSON: JSON.stringify(PRs)
         });
     });
 
