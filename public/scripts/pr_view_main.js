@@ -110,14 +110,14 @@ function addPRsToList(PRs) {
   const container = document.getElementById('pr_info_blocks_area');
   const fragment = document.createDocumentFragment();
   const open_counter = document.getElementById('open_count');
-    const closed_counter = document.getElementById('closed_count');
-    var open = 0,
-        closed = 0;
-    for (const PR of PRs)
-        if (PR.isOpened) open++;
-        else closed++;
-    open_counter.innerText = open;
-    closed_counter.innerText = closed;
+  const closed_counter = document.getElementById('closed_count');
+  var open = 0,
+      closed = 0;
+  for (const PR of PRs)
+      if (PR.isOpened) open++;
+      else closed++;
+  open_counter.innerText = open;
+  closed_counter.innerText = closed;
 
   for (const PR of PRs) {
     const prElem = preparePR_HTML(PR);
@@ -128,9 +128,10 @@ function addPRsToList(PRs) {
       } else {
         removeDescription(container, prElem);
       }
-
     }
-    container.append(fragment);
+    fragment.appendChild(prElem)
+  }
+  container.append(fragment);
 }
 
 addPRsToList(fetchPRs());
