@@ -44,7 +44,7 @@
             <a class="active" href="/"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
             <a href="/mapview"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
             <a href="/prview"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
-            <a href="/imgview"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
+            <a href="/imgview"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Memes</a>
             <a href="https://en.wikipedia.org/wiki/Initiative"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
             <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
         </div>
@@ -83,9 +83,12 @@
 
     function fetchImages() {
         return [
-            makeImageContainer("/images/empty_heart.png", "Some random stuff about the empty and broken heart that's in the container with it :("),
-            makeImageContainer("/images/logging_bg.gif", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"),
-            makeImageContainer("/images/person.jpg", "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.")
+            // makeImageContainer("/images/empty_heart.png", "Some random stuff about the empty and broken heart that's in the container with it :("),
+            // makeImageContainer("/images/logging_bg.gif", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"),
+            // makeImageContainer("/images/person.jpg", "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.")
+            makeImageContainer("https://img-9gag-fun.9cache.com/photo/aYoQ4zm_460swp.webp", "Don't forget the cash."),
+            makeImageContainer("https://img-9gag-fun.9cache.com/photo/a5EQMxg_460swp.webp", "Hope they end up together!"),
+            makeImageContainer("https://img-9gag-fun.9cache.com/photo/anQ7MRz_460swp.webp", "What's your playlist?")
         ];
     }
 
