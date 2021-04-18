@@ -94,6 +94,7 @@ nav {
   color: rgba(65, 74, 76, 0.56);
   border: 1px solid #414a4c;
   opacity: 0.8;
+  overflow: hidden;
 }
 
 .gallery-filter-item:hover {
