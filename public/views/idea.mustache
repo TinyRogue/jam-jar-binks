@@ -11,7 +11,7 @@
         }
         
         .idea-wrap {
-            margin: 30px auto;
+            margin: 60px auto;
             max-width: 1200px;
             width: 100%;
             background-color: #FBFAF5;
@@ -591,6 +591,7 @@
             this.value = '';
             $.post('/addIdeaComment', {comment, id}, function(res) {
                 console.log(res);
+                if (res.success) window.location.reload();
             })
         })
 
