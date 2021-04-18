@@ -1,8 +1,13 @@
+.pr_area {
+  width: 85vw;
+}
+
 .pr_info_bar {
   height: 64px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  font: 500 calc(1em + 1vmin) "Nunito", Helvetica, sans-serif;
 }
 
 .pr_left_info_bar, .pr_right_info_bar {
@@ -31,11 +36,6 @@
   margin: 10px 30px 10px 15px;
 }
 
-.list-wrapper {
-
-}
-
-
 .list-item {
   height: 80px;
   margin: 10px 0;
@@ -55,7 +55,6 @@
   background: rgba(76, 255, 60, 0.23);
   transform: translate(1%, 1%);
 }
-
 
 .list-item div {
   display: flex;
@@ -84,19 +83,15 @@
   height: 100%;
 }
 
-.right-inner-items img {
-
-}
-
 .labels {
   width: 180px;
 }
 
 .labels span {
-  font-weight: bold;
+  font-weight: 400;
   padding: 5px 10px;
   margin: 4px 5px;
   border-radius: 100px;
-  color: rgba(65, 74, 76, 0.56);
+  color: white;
   overflow: hidden;
 }
