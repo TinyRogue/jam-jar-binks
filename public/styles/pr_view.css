@@ -95,3 +95,40 @@
   color: white;
   overflow: hidden;
 }
+
+.pr-description-wrapper {
+  margin: 0;
+  padding: 0 30px;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.pr-description-right {
+  background: #161B22;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100px;
+}
+
+.pr-description-right img {
+  width: 16px;
+  transition: 0.5s;
+  margin-left: 5px;
+}
+
+.pr-description-right a {
+  text-decoration: none;
+  color: #FBFAF5;
+  font: 100 calc(0.2em + 1vmin) Consolas;
+}
+
+.pr-description-right a:hover img {
+  margin-left: 15px;
+}
+
+.pr-description-left {
+
+}

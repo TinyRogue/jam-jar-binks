@@ -81,12 +81,48 @@ function preparePR_HTML(PR) {
   return prElem;
 }
 
+function removeDescription(listwrapper, prElem) {
+  listwrapper.removeChild(prElem.nextSibling);
+}
+
+function addDescription(listwrapper, test) {
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('pr-description-wrapper');
+
+  const left = document.createElement('div');
+  left.classList.add('pr-description-left');
+  const right = document.createElement('div');
+  right.classList.add('pr-description-right');
+  const text = document.createElement('p');
+  text.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit" +
+      "Lorem ipsum dolor sit amet, consectetur";
+  const goToPR = document.createElement('a');
+  goToPR.innerText = 'Go to this pull request';
+  const img = document.createElement('img');
+  img.src = '/img/icons/go-arrow.svg';
+  goToPR.append(img);
+  right.append(goToPR);
+  left.append(text);
+  wrapper.append(left);
+  wrapper.append(right);
+  listwrapper.insertBefore(wrapper, test.nextSibling);
+}
+
 function addPRsToList(PRs) {
   const container = document.getElementById('pr_info_blocks_area');
   const fragment = document.createDocumentFragment();
 
   for (const PR of PRs) {
-    fragment.append(preparePR_HTML(PR));
+    const prElem = preparePR_HTML(PR);
+    prElem.onclick = function() {
+      $(prElem).toggleClass('pr-content');
+      if ($(prElem).hasClass('pr-content')) {
+        addDescription(container, prElem);
+      } else {
+        removeDescription(container, prElem);
+      }
+    }
+    fragment.append(prElem);
   }
   container.append(fragment);
 }
