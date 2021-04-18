@@ -71,6 +71,7 @@ function connectToDb() {
     app.post('/logout', require('./routes/logout').handler);
     app.post('/addIdea', require('./routes/addIdea').getHandler(db));
     app.get('/getIdeas', require('./routes/getIdeas').getHandler(db));
+    app.get('/getIdea', require('./routes/getIdea').getHandler(db));
 
     const PORT = process.env.PORT || 3000;
 
