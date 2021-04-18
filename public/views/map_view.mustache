@@ -11,128 +11,128 @@
 </head>
 
 <style>
-  .button {
-    position: relative;
-    background-color: #0D1117;
-    border-radius: 15vw;
-    border: none;
-    font-size: 12px;
-    color: #F5F5F5;
-    padding: 10px;
-    width: 70%;
-    margin: auto;
-    text-align: center;
-    -webkit-transition-duration: 0.4s;
-    /* Safari */
-    transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .button:after {
-    content: "";
-    background: #323538;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px !important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
-  }
-
-  .button:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-  }
-
-  .addingPanel {
-    color: #0D111795;
-    position: fixed;
-    display: grid;
-    grid-template-rows: 10% 10% auto 15vw 10%;
-    right: 20px;
-    top: 15vh;
-    z-index: 5;
-    width: 25vw;
-    height: 70vh;
-    background-color: #f5f5f598;
-    border-radius: 2vh;
-    padding: 4vh 2vh;
-  }
-
-  .addingPanel > .localization > img {
-    display: inline-block;
-    max-width: 5vh;
-  }
-
-  .addingPanel > .localization > p {
-    color: #0D1117;
-    display: inline-block;
-    width: 80%;
-  }
-
-  .addingPanel > .title {
-    font-size: 30px;
-    border-bottom: 2px solid #0D1117;
-    margin: 1vh 0;
-  }
-
-  .addingPanel > .description {
-    font-size: 20px;
-    border-bottom: 2px solid #0D1117;
-    margin: 1vh 0;
-  }
-
-  .addingPanel > .coverImg {
-    display: grid;
-    grid-template-columns: 10%;
-    place-self: center stretch;
-    place-content: center center;
-    max-height: 20vh;
-    height: 20vh;
-    background-color: #0D111750;
-    border-radius: 5vh;
-  }
-
-  .addingPanel > .coverImg > img {
-    max-width: 100%;
-  }
-
-  .addingPanel > .addBtn {
-    display: grid;
-    grid-template-columns: 50%;
-    place-content: center center;
-    place-self: center center;
-    max-height: 100%;
-    width: 10vh;
-    background-color: #3E971F50;
-    height: 5vh;
-    border-radius: 5vh;
-  }
-
-  .addingPanel > .addBtn > img {
-    place-self: center center;
-    height: 4vh;
-  }
-
-  .visible {
-    display: grid;
-  }
+    .button {
+        position: relative;
+        background-color: #0D1117;
+        border-radius: 15vw;
+        border: none;
+        font-size: 12px;
+        color: #F5F5F5;
+        padding: 10px;
+        width: 70%;
+        margin: auto;
+        text-align: center;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        text-decoration: none;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    
+    .button:after {
+        content: "";
+        background: #323538;
+        display: block;
+        position: absolute;
+        padding-top: 300%;
+        padding-left: 350%;
+        margin-left: -20px !important;
+        margin-top: -120%;
+        opacity: 0;
+        transition: all 0.8s
+    }
+    
+    .button:active:after {
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        transition: 0s
+    }
+    
+    .addingPanel {
+        color: #0D111795;
+        position: fixed;
+        display: grid;
+        grid-template-rows: 10% 10% auto 15vw 10%;
+        right: 20px;
+        top: 15vh;
+        z-index: 5;
+        width: 25vw;
+        height: 70vh;
+        background-color: #f5f5f598;
+        border-radius: 2vh;
+        padding: 4vh 2vh;
+    }
+    
+    .addingPanel>.localization>img {
+        display: inline-block;
+        max-width: 5vh;
+    }
+    
+    .addingPanel>.localization>p {
+        color: #0D1117;
+        display: inline-block;
+        width: 80%;
+    }
+    
+    .addingPanel>.title {
+        font-size: 30px;
+        border-bottom: 2px solid #0D1117;
+        margin: 1vh 0;
+    }
+    
+    .addingPanel>.description {
+        font-size: 20px;
+        border-bottom: 2px solid #0D1117;
+        margin: 1vh 0;
+    }
+    
+    .addingPanel>.coverImg {
+        display: grid;
+        grid-template-columns: 10%;
+        place-self: center stretch;
+        place-content: center center;
+        max-height: 20vh;
+        height: 20vh;
+        background-color: #0D111750;
+        border-radius: 5vh;
+    }
+    
+    .addingPanel>.coverImg>img {
+        max-width: 100%;
+    }
+    
+    .addingPanel>.addBtn {
+        display: grid;
+        grid-template-columns: 50%;
+        place-content: center center;
+        place-self: center center;
+        max-height: 100%;
+        width: 10vh;
+        background-color: #3E971F50;
+        height: 5vh;
+        border-radius: 5vh;
+    }
+    
+    .addingPanel>.addBtn>img {
+        place-self: center center;
+        height: 4vh;
+    }
+    
+    .visible {
+        display: grid;
+    }
 </style>
 
 <body>
-<script>
-  function logout() {
-    fetch('/logout', {
-      method: 'POST'
-    }).then(() => {
-      window.location.href = '/'
-    })
+    <script>
+        function logout() {
+            fetch('/logout', {
+                method: 'POST'
+            }).then(() => {
+                window.location.href = '/'
+            })
 
         }
     </script>
@@ -160,11 +160,12 @@
             <a href="/prview"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
             <a href="/imgview"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Memes</a>
             <a href="https://en.wikipedia.org/wiki/Initiative"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
-            <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
+            <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> News</a>
         </div>
     </nav>
 
     <div class="google-map" style="width: 100vw; height: calc(100vh - 90px); margin-top: 0px; padding: 0px;">
+
 
 <nav style="margin:0px;">
   <div class="navbar_top_half">
