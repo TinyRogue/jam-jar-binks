@@ -295,7 +295,7 @@
         .idea-wrap .notifs-wrapper .unsub {
             background-color: gray;
         }
-
+        
         .add-pr {
             float: right;
             color: white;
@@ -305,7 +305,7 @@
             padding: 4px 10px;
             cursor: pointer;
         }
-
+        
         .add-pr-overlay {
             z-index: 3;
             position: fixed;
@@ -316,7 +316,7 @@
             background-color: rgba(0, 0, 0, 0.6);
             display: none;
         }
-
+        
         .add-pr-overlay .x {
             position: absolute;
             top: -20px;
@@ -325,7 +325,7 @@
             cursor: pointer;
             font-weight: bold;
         }
-
+        
         .add-pr-overlay .box {
             position: absolute;
             top: 50%;
@@ -340,18 +340,18 @@
             display: grid;
             grid-template-columns: 100%;
         }
-
+        
         .add-pr-overlay .box .info img {
             margin-top: 10px;
             width: 50px;
         }
-
+        
         .add-pr-overlay .right-wrapperAAA-pr {
             box-sizing: border-box;
             padding: 20px;
             position: relative;
         }
-
+        
         .add-pr-overlay .right-wrapperAAA-pr input {
             display: block;
             width: 100%;
@@ -362,15 +362,15 @@
             outline: none;
             transition: 0.2s;
         }
-
+        
         .add-pr-overlay .right-wrapperAAA-pr input:focus {
             border-bottom: 2px solid #2C98FF;
         }
-
+        
         .add-pr-overlay .right-wrapperAAA-pr .idea-title {
             font-size: 40px;
         }
-
+        
         .save-pr {
             position: absolute;
             right: 0px;
@@ -400,7 +400,7 @@
 
     <nav>
         <div class="navbar_top_half">
-            <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i> Username</a>
+            <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i>{{user_name}}{{user_surname}}</a>
             <a href="#" style="color: white;"> / </a>
             <a href="#" style="font-family: Consolas;">Searchbox  <i class="fa fa-fw fa-search"></i></a>
             <div class="dropdown">
@@ -463,12 +463,12 @@
                     <button type="button" class="see-all">Expand</button>
                     <div class="comments">
                         {{#comments}}
-                            <div class="comment">
-                                <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
-                                <div class="content">
-                                    {{.}}
-                                </div>
+                        <div class="comment">
+                            <img src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT" class="avatar">
+                            <div class="content">
+                                {{.}}
                             </div>
+                        </div>
                         {{/comments}}
                     </div>
                     <div class="comment-input-wrap">
@@ -522,12 +522,12 @@
                 </div>
                 <div class="ass-list">
                     {{#PRs}}
-                        <div class="ass">
-                            <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
-                            <div class="ass-name">
-                                <a href="/pr/{{ideaID}}">{{title}}</a>
-                            </div>
+                    <div class="ass">
+                        <img class="small-avatar" src="https://cdn.psychologytoday.com/sites/default/files/styles/article-inline-half-caption/public/field_blog_entry_images/2018-09/shutterstock_54503383.jpg?itok=5faDSSqT">
+                        <div class="ass-name">
+                            <a href="/pr/{{ideaID}}">{{title}}</a>
                         </div>
+                    </div>
                     {{/PRs}}
                 </div>
             </div>
@@ -543,12 +543,12 @@
 
     <div class="add-pr-overlay">
         <div class="box">
-          <div class="right-wrapperAAA-pr">
-            <div class="x">&#10005;</div>
-            <input type="text" class="pr-title" placeholder="Title...">
-            <input type="text" class="pr-desc" placeholder="Description...">
-            <button type="button" class="save-pr" idea-id="{{idea_id}}">Add Pull Request</button>
-          </div>
+            <div class="right-wrapperAAA-pr">
+                <div class="x">&#10005;</div>
+                <input type="text" class="pr-title" placeholder="Title...">
+                <input type="text" class="pr-desc" placeholder="Description...">
+                <button type="button" class="save-pr" idea-id="{{idea_id}}">Add Pull Request</button>
+            </div>
         </div>
     </div>
 
@@ -589,7 +589,10 @@
             const comment = this.value.trim();
             if (!this.value) return;
             this.value = '';
-            $.post('/addIdeaComment', {comment, id}, function(res) {
+            $.post('/addIdeaComment', {
+                comment,
+                id
+            }, function(res) {
                 console.log(res);
                 if (res.success) window.location.reload();
             })
@@ -611,7 +614,11 @@
             if (!title || !desc) {
                 return alert('Fill in all forms!');
             }
-            $.post('/addPr', {title, desc, id}, function(res) {
+            $.post('/addPr', {
+                title,
+                desc,
+                id
+            }, function(res) {
                 if (!res.success) {
                     return alert(res.msg);
                 }

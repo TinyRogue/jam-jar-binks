@@ -12,7 +12,7 @@
 
     <nav>
         <div class="navbar_top_half">
-            <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i> Username</a>
+            <a class="active" href="#" style="font-family: Consolas;"><i class="fa fa-fw fa-home"></i>{{user_name}}{{user_surname}}</a>
             <a href="#" style="color: white;"> / </a>
             <a href="#" style="font-family: Consolas;">Searchbox  <i class="fa fa-fw fa-search"></i></a>
             <div class="dropdown">
@@ -95,7 +95,6 @@
         }).then(() => {
             window.location.reload();
         })
-
     }
 </script>
 
