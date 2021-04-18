@@ -122,11 +122,10 @@ nav {
 }
 
 .dropdown {
-  color:whitesmoke;
-  padding-right: 20px;
+  color: whitesmoke;
   position: absolute;
-  right: 0;
   display: inline-block;
+  right: 0px;
 }
 
 .user_image{
@@ -135,12 +134,20 @@ nav {
   width: 100px;
   height: 100px;
   object-fit: cover;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.user-name {
+  font-size: 14px;
+  text-align: center;
 }
 
 .tools{
   padding: 15px 5px;
-  width: 50px;
-  height: 50px;
+  width: 20px;
+  height: 20px;
+  float: right;
 }
 
 .dropdown-content {
@@ -149,6 +156,11 @@ nav {
   color:inherit;
   display: none;
   background-color: #161B22;
+  position: relative;
+  right: 80px;
+  top: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 4px 2px black;
 }
 
 .dropbtn{
@@ -158,6 +170,8 @@ nav {
   display: block;
   border: 0px;
   outline: none;
+  margin: auto;
+  cursor: pointer;
 }
 
 .dropbtn_log{
@@ -168,12 +182,16 @@ nav {
   width: 100%;
   border: 0;
   background-color: #161B22;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
 .dropbtn_log img{
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
   vertical-align: middle;
+  margin-right: 5px;
 }
 
 .dropdown:hover .dropdown-content {
@@ -242,7 +260,6 @@ nav {
     background-color: #161B22;
     font-family: Consolas;
     height: 45px;
-    overflow: auto;
 }
 
 .navbar_top_half a {
@@ -279,7 +296,6 @@ nav {
     font-family: Consolas;
     padding: 0px;
     height: 45px;
-    overflow: auto;
 }
 
 .navbar_bottom_half a {
