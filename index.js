@@ -80,6 +80,10 @@ function connectToDb() {
         if (!user) {
             return res.redirect('/');
         }
+        let PRs = []
+        for (const prID of idea.PRs) {
+            PRs.push(await db.collection('prs').findOne({_id: prID}));
+        }
         const self = await db.collection('accounts').findOne({_id: new ObjectId(req.session.userID)});
         let name = 'John';
         let surname = 'Doe';
@@ -97,7 +101,8 @@ function connectToDb() {
             comments: idea.comments,
             comments_count: idea.comments.length,
             idea_image: `/uploads/${idea.imageID}.png`,
-            idea_id: req.params.id
+            idea_id: req.params.id,
+            PRs: PRs
         });
     });
 
@@ -112,6 +117,7 @@ function connectToDb() {
     app.get('/getIdeas', require('./routes/getIdeas').getHandler(db));
     app.get('/getIdea', require('./routes/getIdea').getHandler(db));
     app.post('/addIdeaComment', require('./routes/addIdeaComment').getHandler(db));
+    app.post('/addPr', require('./routes/addPr').getHandler(db));
 
     const PORT = process.env.PORT || 3000;
 
