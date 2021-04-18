@@ -1,6 +1,7 @@
 dbImage = {
   path: "",
   description: "",
+  url: "",
 }
 
 const colorPicker = {
@@ -24,6 +25,7 @@ function fetchImages(num_images) {
   for (const _dbImage of dbImages) {
     _dbImage.description = "Lorem Ipsum ashduagsdu agsudgua agsudg";
     _dbImage.path = path;
+    _dbImage.url = '/idea';
   }
   return dbImages;
 }
@@ -33,7 +35,8 @@ function insertImages(numImages) {
   const fragment = document.createDocumentFragment()
 
   for (const _dbImage of fetchImages(numImages)) {
-    const item = document.createElement('div');
+    const item = document.createElement('a');
+    item.href = _dbImage.url;
     item.classList.add('gallery-item')
     const img = document.createElement('img');
     img.src = _dbImage.path;
@@ -104,11 +107,6 @@ function insertCategories() {
   container.append(fragment)
 }
 
-insertGalleryFilters();
-insertCategories();
-insertImages(20);
-
-
 (function() {
   new Macy({
     container: '.gallery-grid',
@@ -124,3 +122,7 @@ insertImages(20);
     }
   });
 })();
+
+insertGalleryFilters();
+insertCategories();
+insertImages(20);
