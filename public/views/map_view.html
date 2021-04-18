@@ -49,8 +49,10 @@
     }
 
     .addingPanel {
-        color: #0D111750;
+        color: #0D111795;
         position: fixed;
+        display: grid;
+        grid-template-rows: 10% 10% auto 15vw 10%;
         right: 20px;
         top: 15vh;
         z-index: 5;
@@ -61,15 +63,59 @@
         padding: 4vh 2vh;
     }
 
-    .addingPanel .title {
-        font-size: 30px;
-        border-bottom: 2px solid #0D1117;
-        margin: 5vh 0;
+    .addingPanel > .localization > img {
+        display: inline-block;
+        max-width: 5vh;
     }
 
-    .addingPanel .description {
+    .addingPanel > .localization > p {
+        color: #0D1117;
+        display: inline-block;
+        width: 80%;
+    }
+
+    .addingPanel > .title {
+        font-size: 30px;
+        border-bottom: 2px solid #0D1117;
+        margin: 1vh 0;
+    }
+
+    .addingPanel > .description {
         font-size: 20px;
         border-bottom: 2px solid #0D1117;
+        margin: 1vh 0;
+    }
+
+    .addingPanel > .coverImg {
+        display: grid;
+        grid-template-columns: 10%;
+        place-self: center stretch;
+        place-content: center center;
+        max-height: 20vh;
+        height: 20vh;
+        background-color: #0D111750;
+        border-radius: 5vh;
+    }
+
+    .addingPanel > .coverImg > img{
+        max-width: 100%;
+    }
+
+    .addingPanel > .addBtn {
+        display: grid;
+        grid-template-columns: 50%;
+        place-content: center center;
+        place-self: center center;
+        max-height: 100%;
+        width: 10vh;
+        background-color: #3E971F50;
+        height: 5vh;
+        border-radius: 5vh;
+    }
+
+    .addingPanel > .addBtn > img {
+        place-self: center center;
+        height: 4vh;
     }
 
 </style>
@@ -151,6 +197,10 @@
             var addingPanel = document.createElement("div");
             addingPanel.className = "addingPanel";
 
+            var localization = document.createElement("div");
+            localization.className = "localization";
+            localization.innerHTML = '<img src="img/icons/localization.png" alt="localizaation-icon" /> <p class="localization-info">TAKEN FROM MARKER SOMEHOW</p>';
+
             var title = document.createElement("div");
             title.className = "title";
             title.innerHTML = "Add title here...";
@@ -159,8 +209,19 @@
             description.className = "description";
             description.innerHTML = "Add description here...";
 
+            var coverImg = document.createElement("div");
+            coverImg.className = "coverImg";
+            coverImg.innerHTML = '<img src="img/icons/upload.png" alt="upload-button" />';
+
+            var addBtn = document.createElement("div");
+            addBtn.className = "addBtn";
+            addBtn.innerHTML = '<img src="img/icons/add.png" alt="add-button" />';
+
+            addingPanel.appendChild(localization);
             addingPanel.appendChild(title);
             addingPanel.appendChild(description);
+            addingPanel.appendChild(coverImg);
+            addingPanel.appendChild(addBtn);
 
             document.body.appendChild(addingPanel);
             console.log(marker);
