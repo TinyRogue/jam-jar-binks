@@ -1,3 +1,4 @@
+const { existsSync, mkdirSync } = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 function getHandler(db) {
@@ -38,6 +39,10 @@ function getHandler(db) {
       assignments: [],
       ratings: 0,
       positiveRatings: 0
+    }
+    const dir = __dirname + '/../public/uploads/';
+    if (!existsSync(dir)){
+      mkdirSync(dir);
     }
     req.files.image.mv(__dirname + '/../public/uploads/' + imageID + '.png', async function() {
       await db.collection('ideas').insertOne(ideaData);
