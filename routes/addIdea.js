@@ -1,4 +1,4 @@
-const { existsSync, mkdirSync } = require('node:fs');
+const { existsSync, mkdirSync } = require('fs');
 const { v4: uuidv4 } = require('uuid');
 
 function getHandler(db) {
