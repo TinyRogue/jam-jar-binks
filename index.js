@@ -52,17 +52,17 @@ function connectToDb() {
 
     app.get('/', (req, res) => {
         if (!req.session.logged) {
-            return res.sendFile(__dirname + '/public/views/login.html');
+            return res.render('login')
         }
-        res.sendFile(__dirname + '/public/views/home.html')
+        res.render('home');
     });
 
     app.get('/mapview', (req, res) => {
-        res.sendFile(__dirname + '/public/views/map_view.html')
+        res.render('map_view')
     });
 
     app.get('/prview', (req, res) => {
-        res.sendFile(__dirname + '/public/views/pull_request_view.html')
+        res.render('pull_request_view')
     });
 
     app.get('/idea/:id', async(req, res) => {
@@ -107,7 +107,7 @@ function connectToDb() {
     });
 
     app.get('/imgview', (req, res) => {
-        res.sendFile(__dirname + '/public/views/memes_view.html')
+        res.render('memes_view');
     });
 
     app.post('/register', require('./routes/register').getHandler(db));
