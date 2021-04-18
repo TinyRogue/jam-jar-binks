@@ -7,6 +7,7 @@ const session = require('express-session')
 const hash = require('password-hash');
 const { v4: uuidv4 } = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
+const fileUpload = require('express-fileupload')
 
 function connectToDb() {
     return new Promise(resolve => {
@@ -28,8 +29,12 @@ function connectToDb() {
         windowMs: 60 * 1000 * 1,
         max: 60
     }));
-    app.use(express.urlencoded({ extended: false }));
+    app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
+
+    app.use(fileUpload({
+        limits: {fileSize: 50 * 1024 * 1024}
+    }));
 
     app.use(session({
         secret: 'session secret',
@@ -53,7 +58,7 @@ function connectToDb() {
         res.sendFile(__dirname + '/public/views/pull_request_view.html')
     });
 
-    app.get('/idea', (req, res) => {
+    app.get('/idea/:id', (req, res) => {
         res.sendFile(__dirname + '/public/views/idea.html')
     });
 
@@ -64,6 +69,8 @@ function connectToDb() {
     app.post('/register', require('./routes/register').getHandler(db));
     app.post('/login', require('./routes/login').getHandler(db));
     app.post('/logout', require('./routes/logout').handler);
+    app.post('/addIdea', require('./routes/addIdea').getHandler(db));
+    app.get('/getIdeas', require('./routes/getIdeas').getHandler(db));
 
     const PORT = process.env.PORT || 3000;
 
