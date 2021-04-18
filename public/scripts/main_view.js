@@ -136,7 +136,3 @@ $('.gallery-filter-item').on('click', function() {
     }
   });
 })();
-
-insertGalleryFilters();
-insertCategories();
-insertImages(20);
