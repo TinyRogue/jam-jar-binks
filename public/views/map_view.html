@@ -21,13 +21,14 @@
         width: 70%;
         margin: auto;
         text-align: center;
-        -webkit-transition-duration: 0.4s; /* Safari */
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
         transition-duration: 0.4s;
         text-decoration: none;
         overflow: hidden;
         cursor: pointer;
     }
-
+    
     .button:after {
         content: "";
         background: #323538;
@@ -40,14 +41,14 @@
         opacity: 0;
         transition: all 0.8s
     }
-
+    
     .button:active:after {
         padding: 0;
         margin: 0;
         opacity: 1;
         transition: 0s
     }
-
+    
     .addingPanel {
         color: #0D111795;
         position: fixed;
@@ -62,31 +63,31 @@
         border-radius: 2vh;
         padding: 4vh 2vh;
     }
-
-    .addingPanel > .localization > img {
+    
+    .addingPanel>.localization>img {
         display: inline-block;
         max-width: 5vh;
     }
-
-    .addingPanel > .localization > p {
+    
+    .addingPanel>.localization>p {
         color: #0D1117;
         display: inline-block;
         width: 80%;
     }
-
-    .addingPanel > .title {
+    
+    .addingPanel>.title {
         font-size: 30px;
         border-bottom: 2px solid #0D1117;
         margin: 1vh 0;
     }
-
-    .addingPanel > .description {
+    
+    .addingPanel>.description {
         font-size: 20px;
         border-bottom: 2px solid #0D1117;
         margin: 1vh 0;
     }
-
-    .addingPanel > .coverImg {
+    
+    .addingPanel>.coverImg {
         display: grid;
         grid-template-columns: 10%;
         place-self: center stretch;
@@ -96,12 +97,12 @@
         background-color: #0D111750;
         border-radius: 5vh;
     }
-
-    .addingPanel > .coverImg > img{
+    
+    .addingPanel>.coverImg>img {
         max-width: 100%;
     }
-
-    .addingPanel > .addBtn {
+    
+    .addingPanel>.addBtn {
         display: grid;
         grid-template-columns: 50%;
         place-content: center center;
@@ -112,22 +113,24 @@
         height: 5vh;
         border-radius: 5vh;
     }
-
-    .addingPanel > .addBtn > img {
+    
+    .addingPanel>.addBtn>img {
         place-self: center center;
         height: 4vh;
     }
-
 </style>
 
 <body>
     <script>
         function logout() {
-        fetch('/logout', {method: 'POST'}).then(() => {
-          window.location.reload()    
-        })
-    
-    } </script>
+            fetch('/logout', {
+                method: 'POST'
+            }).then(() => {
+                window.location.location = '/'
+            })
+
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <nav style="margin:0px;">
@@ -136,22 +139,22 @@
             <a href="#" style="color: white;"> / </a>
             <a href="#" style="font-family: Consolas;">Searchbox  <i class="fa fa-fw fa-search"></i></a>
             <div class="dropdown">
-                <img class = "tools" src="/img/icons/settings2.png">
-                <div class="dropdown-content" >
-                  <img class = "user_image" src = "/images/person.jpg" alt = "">
-                  <div style="font-size:smaller"> Name Surname</div>
-                  <button onclick="" class="dropbtn">Edit email </button>
-                  <button onclick="" class="dropbtn">Change city </button>
-                  <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
+                <img class="tools" src="/img/icons/settings2.png">
+                <div class="dropdown-content">
+                    <img class="user_image" src="/images/person.jpg" alt="">
+                    <div style="font-size:smaller"> Name Surname</div>
+                    <button onclick="" class="dropbtn">Edit email </button>
+                    <button onclick="" class="dropbtn">Change city </button>
+                    <button onclick="logout()" class="dropbtn_log"><img src="/img/icons/logout.png" > Log out</button>
                 </div>
-              </div>
+            </div>
         </div>
         <div class="navbar_bottom_half">
             <a class="active" href="/"><img class="bar_icon" src="/img/icons/idea.png" alt=""> Ideas</a>
             <a href="/mapview"><img class="bar_icon" src="/img/icons/street-map.png" alt=""> City</a>
             <a href="/prview"><img class="bar_icon" src="/img/icons/minimize.png" alt=""> Pull Requests</a>
-            <a href="#"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
-            <a href="#"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
+            <a href="/imgview"><img class="bar_icon" src="/img/icons/photo.png" alt=""> Images</a>
+            <a href="https://en.wikipedia.org/wiki/Initiative"><img class="bar_icon" src="/img/icons/open-book.png" alt=""> Wiki</a>
             <a href="#"><img class="bar_icon" src="/img/icons/email.png" alt=""> Insights</a>
         </div>
     </nav>
@@ -177,12 +180,12 @@
                 map: map,
             });
             google.maps.event.addListenerOnce(map, 'idle', codeAddress);
-            
+
             marker.addListener("click", () => {
                 const contentString =
-                    '<div>' + 
-                        '<p>"Stuff about the localization"</p>' +
-                        '<button class="button" onclick="openAddingOption()">"Add idea here"</button>' +
+                    '<div>' +
+                    '<p>"Stuff about the localization"</p>' +
+                    '<button class="button" onclick="openAddingOption()">"Add idea here"</button>' +
                     "</div>";
                 const infowindow = new google.maps.InfoWindow({
                     content: contentString,
