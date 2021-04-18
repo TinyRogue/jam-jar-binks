@@ -57,6 +57,10 @@ function connectToDb() {
         res.sendFile(__dirname + '/public/views/idea.html')
     });
 
+    app.get('/imgview', (req, res) => {
+        res.sendFile(__dirname + '/public/views/images_view.html')
+    });
+
     app.post('/register', require('./routes/register').getHandler(db));
     app.post('/login', require('./routes/login').getHandler(db));
     app.post('/logout', require('./routes/logout').handler);
