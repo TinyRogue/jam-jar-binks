@@ -1,5 +1,5 @@
 html {
-    font: 500 calc(1em + 0.2vmin) Nunito, "SansSerif", monospace;
+    font: 500 calc(1em + 0.2vmin) "Poppins", "SansSerif", monospace;
     background: #fbfaf5;
 }
 
@@ -260,8 +260,8 @@ nav {
 .navbar_top_half {
     width: 100%;
     background-color: #161B22;
-    font-family: Consolas;
-    height: 45px;
+    font-family: Poppins;
+    height: 55px;
 }
 
 .navbar_top_half a {
@@ -269,7 +269,7 @@ nav {
     text-align: center;
     padding: 12px;
     color: #2C98FF;
-    font-family: sans-serif;
+    font-family: Poppins;
     text-decoration: none;
     font-size: 17px;
 }
@@ -295,9 +295,9 @@ nav {
 .navbar_bottom_half {
     width: 100%;
     background-color: #161B22;
-    font-family: Consolas;
+    font-family: Poppins;
     padding: 0px;
-    height: 45px;
+    height: 55px;
 }
 
 .navbar_bottom_half a {
@@ -349,7 +349,7 @@ nav {
     vertical-align: middle;
     color: white;
     font-size: large;
-    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Poppins, 'Trebuchet MS', sans-serif;
 }
 
 .pr_info_bar_text {
@@ -357,7 +357,7 @@ nav {
     vertical-align: middle;
     color: white;
     font-size: large;
-    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Poppins, 'Trebuchet MS', sans-serif;
 }
 
 .pr_info_aligner {
@@ -401,7 +401,7 @@ nav {
     margin-right: 10px;
     text-align: justify;
     padding-bottom: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Poppins", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .add-idea {
